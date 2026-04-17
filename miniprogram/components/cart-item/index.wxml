@@ -1,0 +1,40 @@
+<view class="card cart-item" wx:if="{{item}}">
+  <view class="cart-item__top">
+    <view class="cart-item__main">
+      <text class="cart-item__title">{{item.displayName}}</text>
+      <text class="cart-item__price">￥{{item.price}}</text>
+    </view>
+    <text class="tag">{{item.checked === false ? '未勾选' : '已勾选'}}</text>
+  </view>
+
+  <view class="cart-item__meta">
+    <text class="cart-item__line">数量：{{item.quantity}}</text>
+    <text class="cart-item__line">小计：￥{{(item.price || 0) * (item.quantity || 1)}}</text>
+  </view>
+
+  <input
+    class="field cart-item__remark"
+    value="{{item.remark}}"
+    placeholder="给客服补充备注（可选）"
+    bindblur="handleRemarkBlur"
+  />
+
+  <view class="cart-item__actions">
+    <button
+      class="ghost-button cart-item__button"
+      bindtap="handleToggle"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      {{item.checked === false ? '重新勾选' : '取消勾选'}}
+    </button>
+    <button
+      class="ghost-button cart-item__button cart-item__button--danger"
+      bindtap="handleDelete"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      删除
+    </button>
+  </view>
+</view>

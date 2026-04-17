@@ -1,0 +1,52 @@
+.pay-info-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pay-info-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pay-info-card__top {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.pay-info-card__main {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pay-info-card__order-no,
+.pay-info-card__title {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pay-info-card__amount {
+  color: #00F5A0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pay-info-card__items,
+.pay-info-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pay-info-card__item,
+.pay-info-card__desc {
+  color: #A0A6B1;
+  line-height: 1.7;
+}

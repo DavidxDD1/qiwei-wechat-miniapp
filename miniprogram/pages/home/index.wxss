@@ -1,0 +1,67 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-hero {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-hero__logo {
+  width: 140px;
+  height: 140px;
+  align-self: center;
+}
+
+.home-hero__subtitle {
+  color: #A0A6B1;
+  line-height: 1.8;
+}
+
+.home-hero__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.home-hero__button {
+  flex: 1;
+}
+
+.home-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-entry-card,
+.home-summary,
+.home-faq {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-entry-card__title,
+.home-faq__q {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.home-entry-card__desc,
+.home-summary__item,
+.home-faq__a {
+  color: #A0A6B1;
+  line-height: 1.7;
+}

@@ -1,23 +1,57 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/service/service",
-    "pages/order/order",
-    "pages/success/success"
+    "pages/home/index",
+    "pages/service/index",
+    "pages/cart/index",
+    "pages/order-intent/index",
+    "pages/pay-info/index",
+    "pages/orders/index",
+    "pages/profile/index"
   ],
   "window": {
-    "navigationBarTitleText": "启卫电竞",
+    "navigationBarTitleText": "\u542f\u536b\u7535\u7ade",
     "navigationBarBackgroundColor": "#0F1115",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#0F1115",
     "backgroundTextStyle": "light"
   },
+  "tabBar": {
+    "color": "#A0A6B1",
+    "selectedColor": "#00F5A0",
+    "backgroundColor": "#171A21",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "\u9996\u9875"
+      },
+      {
+        "pagePath": "pages/service/index",
+        "text": "\u670d\u52a1"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "\u8d2d\u7269\u8f66"
+      },
+      {
+        "pagePath": "pages/orders/index",
+        "text": "\u8ba2\u5355"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "\u6211\u7684"
+      }
+    ]
+  },
   "style": "v2",
+  "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "section-title": "/components/SectionTitle/index",
-    "service-card": "/components/ServiceCard/index",
-    "mode-tag": "/components/ModeTag/index",
-    "tier-card": "/components/TierCard/index",
-    "price-bar": "/components/PriceBar/index"
+    "section-title": "/components/section-title/index",
+    "raw-table-card": "/components/raw-table-card/index",
+    "price-cell": "/components/price-cell/index",
+    "price-bar": "/components/price-bar/index",
+    "cart-item": "/components/cart-item/index",
+    "status-badge": "/components/status-badge/index",
+    "empty-state": "/components/empty-state/index"
   }
 }

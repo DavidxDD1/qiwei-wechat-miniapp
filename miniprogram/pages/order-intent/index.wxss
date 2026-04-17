@@ -1,0 +1,54 @@
+.order-intent-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-intent-card,
+.order-form,
+.order-rules {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-intent-card__title,
+.order-form__title {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.order-intent-card__item {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.order-intent-card__name {
+  min-width: 0;
+  flex: 1;
+  color: #A0A6B1;
+  line-height: 1.7;
+}
+
+.order-intent-card__price,
+.order-intent-card__total {
+  color: #00F5A0;
+  font-weight: 600;
+}
+
+.order-rules__text {
+  color: #A0A6B1;
+  line-height: 1.8;
+}
+
+.order-rules__button--active {
+  border-color: #00F5A0;
+  color: #00F5A0;
+}
+
+.order-submit {
+  width: 100%;
+}

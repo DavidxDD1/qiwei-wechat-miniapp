@@ -1,0 +1,13 @@
+<view class="card empty-state">
+  <text class="empty-state__title">{{title}}</text>
+  <text class="empty-state__desc" wx:if="{{desc}}">{{desc}}</text>
+  <button
+    wx:if="{{actionText}}"
+    class="primary-button empty-state__button"
+    bindtap="handleAction"
+    hover-class="is-pressing"
+    hover-stay-time="150"
+  >
+    {{actionText}}
+  </button>
+</view>

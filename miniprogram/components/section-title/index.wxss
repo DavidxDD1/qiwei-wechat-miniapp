@@ -1,0 +1,17 @@
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title__headline {
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.section-title__desc {
+  color: #A0A6B1;
+  font-size: 14px;
+  line-height: 1.6;
+}

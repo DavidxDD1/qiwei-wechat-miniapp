@@ -1,0 +1,3 @@
+<view class="status-badge status-badge--{{tone}}">
+  <text class="status-badge__text">{{status}}</text>
+</view>

@@ -1,0 +1,53 @@
+<view class="page-shell profile-page">
+  <section-title
+    title="个人中心"
+    desc="当前默认游客态，会员、通知、评价等模块先保留正式占位。"
+  ></section-title>
+
+  <view class="card profile-user" wx:if="{{guestProfile}}">
+    <view class="profile-user__avatar">
+      <text class="profile-user__avatar-text">{{guestProfile.avatarText}}</text>
+    </view>
+    <view class="profile-user__main">
+      <text class="profile-user__name">{{guestProfile.nickname}}</text>
+      <text class="tag">模式 {{guestProfile.mode}}</text>
+    </view>
+  </view>
+
+  <view class="profile-actions">
+    <button
+      class="primary-button"
+      bindtap="handleGoService"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      去选服务
+    </button>
+    <button
+      class="ghost-button"
+      bindtap="handleGoOrders"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      查看订单
+    </button>
+    <button
+      class="ghost-button"
+      bindtap="handleContact"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      联系客服
+    </button>
+  </view>
+
+  <view class="profile-placeholder-list">
+    <view class="card profile-placeholder-card" wx:for="{{placeholderCards}}" wx:key="title">
+      <view class="profile-placeholder-card__top">
+        <text class="profile-placeholder-card__title">{{item.title}}</text>
+        <text class="tag">{{item.status}}</text>
+      </view>
+      <text class="profile-placeholder-card__desc">{{item.desc}}</text>
+    </view>
+  </view>
+</view>

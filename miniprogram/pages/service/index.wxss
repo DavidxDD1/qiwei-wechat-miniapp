@@ -1,0 +1,64 @@
+.service-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-tabs {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.service-tabs__inner {
+  display: inline-flex;
+  gap: 10px;
+  padding-right: 20px;
+}
+
+.service-tabs__button {
+  min-width: 108px;
+  padding: 0 16px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 999px;
+  border: 1px solid #2A2F3A;
+  background: #171A21;
+  color: #A0A6B1;
+  font-size: 13px;
+}
+
+.service-tabs__button--sub {
+  min-width: 132px;
+}
+
+.service-tabs__button--active {
+  border: 2px solid #00F5A0;
+  box-shadow: 0 0 20px rgba(0, 245, 160, 0.4);
+  color: #FFFFFF;
+  transform: scale(1.02);
+}
+
+.service-selection {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-selection__title {
+  color: #A0A6B1;
+  font-size: 12px;
+}
+
+.service-selection__name {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.service-selection__price {
+  color: #00F5A0;
+  font-size: 20px;
+  font-weight: 600;
+}

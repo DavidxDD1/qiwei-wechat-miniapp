@@ -1,27 +1,20 @@
 page {
   --bg-primary: #0F1115;
   --bg-card: #171A21;
+  --border-color: #2A2F3A;
   --brand-primary: #00F5A0;
   --brand-secondary: #00C2FF;
   --text-primary: #FFFFFF;
   --text-secondary: #A0A6B1;
-  --text-muted: #6B7280;
   --danger: #FF4D4F;
+  --page-padding: 20px;
+  --radius-card: 16px;
+  --radius-button: 12px;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
-  --page-padding-x: 20px;
-  --radius-card: 16px;
-  --radius-button: 12px;
-  --radius-tag: 8px;
-  --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.4);
-  --shadow-selected: 0 0 0 2px var(--brand-primary);
-  min-height: 100%;
-  background:
-    radial-gradient(circle at top, rgba(0, 245, 160, 0.12), transparent 34%),
-    radial-gradient(circle at right top, rgba(0, 194, 255, 0.16), transparent 28%),
-    linear-gradient(180deg, #131722 0%, #0F1115 44%, #0B0D11 100%);
-  color: var(--text-primary);
+  background: #0F1115;
+  color: #FFFFFF;
   font-size: 14px;
 }
 
@@ -29,6 +22,7 @@ view,
 text,
 button,
 input,
+textarea,
 scroll-view {
   box-sizing: border-box;
 }
@@ -45,66 +39,77 @@ button::after {
 
 .page-shell {
   min-height: 100vh;
-  padding: var(--space-3) var(--page-padding-x) 120px;
+  padding: 24px var(--page-padding) 120px;
+  background: #0F1115;
   animation: pageFadeIn 300ms ease both;
 }
 
-.page-shell--center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+.card {
+  background: linear-gradient(145deg, #171A21, #1C1F27);
+  border: 1px solid #2A2F3A;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
-.surface-card {
-  padding: var(--space-3);
-  border-radius: var(--radius-card);
-  background: rgba(23, 26, 33, 0.96);
-  box-shadow: var(--shadow-card);
+.muted {
+  color: #A0A6B1;
 }
 
-.label-text {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.muted-text {
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.price-text {
-  color: var(--brand-primary);
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.gradient-button {
-  width: 100%;
+.primary-button {
   height: 48px;
-  border-radius: var(--radius-button);
+  line-height: 48px;
+  border-radius: 12px;
+  color: #0F1115;
   background: linear-gradient(90deg, #00F5A0, #00C2FF);
-  color: #071017;
   font-size: 14px;
   font-weight: 600;
-  line-height: 48px;
   text-align: center;
-  box-shadow: 0 10px 26px rgba(0, 194, 255, 0.2);
-  transition: transform 150ms ease, opacity 150ms ease, box-shadow 200ms ease;
+  transition: transform 150ms ease, opacity 150ms ease;
 }
 
-.gradient-button--disabled {
-  background: #2B313C;
-  color: var(--text-muted);
+.primary-button[disabled] {
   opacity: 0.5;
-  box-shadow: none;
+}
+
+.ghost-button {
+  height: 48px;
+  line-height: 48px;
+  border-radius: 12px;
+  border: 1px solid #2A2F3A;
+  color: #FFFFFF;
+  background: #171A21;
+  font-size: 14px;
+  text-align: center;
 }
 
 .is-pressing {
   transform: scale(0.98) !important;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 245, 160, 0.12);
+  color: #00F5A0;
+  font-size: 12px;
+}
+
+.field {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #2A2F3A;
+  border-radius: 12px;
+  background: #171A21;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.field::placeholder {
+  color: #A0A6B1;
 }
 
 @keyframes pageFadeIn {

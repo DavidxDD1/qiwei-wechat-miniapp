@@ -1,0 +1,35 @@
+<view class="page-shell cart-page">
+  <section-title
+    title="购物车"
+    desc="本地持久化保存已选价格项，支持继续备注与筛选后下单"
+  ></section-title>
+
+  <empty-state
+    wx:if="{{!items.length}}"
+    title="购物车还是空的"
+    desc="先去服务页点击原表价格单元格，再把想下单的内容加入购物车。"
+    action-text="去服务页"
+    bind:actiontap="handleGoService"
+  ></empty-state>
+
+  <view wx:else class="cart-page__list">
+    <cart-item
+      wx:for="{{items}}"
+      wx:key="id"
+      item="{{item}}"
+      bind:toggle="handleToggle"
+      bind:delete="handleDelete"
+      bind:editremark="handleRemark"
+    ></cart-item>
+  </view>
+
+  <price-bar
+    wx:if="{{items.length}}"
+    price="{{totalPrice}}"
+    display-name="{{summaryText}}"
+    disabled="{{!checkedCount}}"
+    primary-text="去下单"
+    show-secondary="{{false}}"
+    bind:buy="handleCheckout"
+  ></price-bar>
+</view>

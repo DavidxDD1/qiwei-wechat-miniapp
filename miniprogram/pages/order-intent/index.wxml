@@ -1,0 +1,68 @@
+<view class="page-shell order-intent-page">
+  <section-title
+    title="提交预约意向"
+    desc="填写联系人信息后即可创建本地订单，支付页默认展示人工确认说明"
+  ></section-title>
+
+  <view class="card order-intent-card">
+    <text class="order-intent-card__title">本次下单内容</text>
+    <view class="order-intent-card__item" wx:for="{{items}}" wx:key="id">
+      <text class="order-intent-card__name">{{item.displayName}}</text>
+      <text class="order-intent-card__price">￥{{item.price}}</text>
+    </view>
+    <text class="order-intent-card__total">应付金额 ￥{{totalPrice}}</text>
+  </view>
+
+  <view class="card order-form">
+    <text class="order-form__title">联系人信息</text>
+    <input
+      class="field"
+      data-field="contactName"
+      value="{{contactName}}"
+      placeholder="请输入联系人姓名"
+      bindinput="handleInput"
+    />
+    <input
+      class="field"
+      data-field="contactPhone"
+      value="{{contactPhone}}"
+      placeholder="请输入手机号"
+      bindinput="handleInput"
+    />
+    <input
+      class="field"
+      data-field="contactWechat"
+      value="{{contactWechat}}"
+      placeholder="请输入微信号（可选）"
+      bindinput="handleInput"
+    />
+    <input
+      class="field"
+      data-field="remark"
+      value="{{remark}}"
+      placeholder="备注需求（可选）"
+      bindinput="handleInput"
+    />
+  </view>
+
+  <view class="card order-rules">
+    <text class="order-rules__text">请确认已阅读原表说明、备注规则与人工确认流程。</text>
+    <button
+      class="ghost-button order-rules__button {{agreeRules ? 'order-rules__button--active' : ''}}"
+      bindtap="toggleAgree"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      {{agreeRules ? '已同意服务说明' : '点击同意服务说明'}}
+    </button>
+  </view>
+
+  <button
+    class="primary-button order-submit"
+    bindtap="handleSubmit"
+    hover-class="is-pressing"
+    hover-stay-time="150"
+  >
+    {{submitting ? '提交中...' : '提交意向订单'}}
+  </button>
+</view>

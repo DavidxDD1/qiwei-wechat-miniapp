@@ -1,0 +1,9 @@
+<view
+  class="price-cell {{selected ? 'price-cell--selected' : ''}} {{disabled ? 'price-cell--disabled' : ''}}"
+  bindtap="handleTap"
+  hover-class="{{disabled ? '' : 'is-pressing'}}"
+  hover-stay-time="150"
+>
+  <text class="price-cell__label">{{label}}</text>
+  <text class="price-cell__value">{{priceText}}</text>
+</view>

@@ -1,0 +1,68 @@
+<view class="page-shell service-page">
+  <section-title
+    title="原表价格目录"
+    desc="护航单、男陪、女陪均按原始表结构保留，不做合并和删减"
+  ></section-title>
+
+  <scroll-view class="service-tabs" scroll-x="true" show-scrollbar="false">
+    <view class="service-tabs__inner">
+      <button
+        wx:for="{{services}}"
+        wx:key="id"
+        class="service-tabs__button {{activeServiceId === item.id ? 'service-tabs__button--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleServiceChange"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        {{item.title}}
+      </button>
+    </view>
+  </scroll-view>
+
+  <scroll-view class="service-tabs service-tabs--sub" scroll-x="true" show-scrollbar="false" wx:if="{{subTabs.length}}">
+    <view class="service-tabs__inner">
+      <button
+        wx:for="{{subTabs}}"
+        wx:key="id"
+        class="service-tabs__button service-tabs__button--sub {{activeTableId === item.id ? 'service-tabs__button--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleSubChange"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        {{item.title}}
+      </button>
+    </view>
+  </scroll-view>
+
+  <view class="card service-selection" wx:if="{{selectedDisplay}}">
+    <text class="service-selection__title">已选价格项</text>
+    <text class="service-selection__name">{{selectedDisplay}}</text>
+    <text class="service-selection__price">总价 ￥{{selectedPrice}}</text>
+  </view>
+
+  <raw-table-card
+    wx:if="{{activeCard}}"
+    card="{{activeCard}}"
+    selected-key="{{selectedKey}}"
+    bind:celltap="handleCellTap"
+  ></raw-table-card>
+
+  <empty-state
+    wx:else
+    title="暂无原表内容"
+    desc="当前目录没有可渲染的价格表，请切换其他服务分类。"
+  ></empty-state>
+
+  <price-bar
+    price="{{selectedPrice}}"
+    display-name="{{selectedDisplay}}"
+    disabled="{{!selectedPrice}}"
+    primary-text="立即下单"
+    secondary-text="加入购物车"
+    show-secondary="{{true}}"
+    bind:addcart="handleAddCart"
+    bind:buy="handleBuy"
+  ></price-bar>
+</view>

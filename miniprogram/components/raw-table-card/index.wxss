@@ -1,0 +1,79 @@
+.raw-table-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.raw-table-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.raw-table-card__title {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.raw-table-card__subtitle {
+  color: #A0A6B1;
+  font-size: 13px;
+}
+
+.raw-table-card__entry-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.raw-table-card__scroll {
+  width: 100%;
+}
+
+.raw-table-card__table {
+  min-width: 720px;
+}
+
+.raw-table-card__row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.raw-table-card__row--head {
+  margin-top: 0;
+}
+
+.raw-table-card__corner,
+.raw-table-card__row-label,
+.raw-table-card__head {
+  width: 92px;
+  flex: none;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.raw-table-card__head {
+  text-align: center;
+}
+
+.raw-table-card__cell-list {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.raw-table-card__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.raw-table-card__note {
+  color: #A0A6B1;
+  font-size: 12px;
+  line-height: 1.7;
+}

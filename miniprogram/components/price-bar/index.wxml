@@ -1,0 +1,25 @@
+<view class="price-bar card">
+  <view class="price-bar__meta">
+    <text class="price-bar__label">{{displayName || '当前未选择价格项'}}</text>
+    <text class="price-bar__value">￥{{price || 0}}</text>
+  </view>
+  <view class="price-bar__actions">
+    <button
+      wx:if="{{showSecondary}}"
+      class="ghost-button price-bar__button {{disabled ? 'price-bar__button--disabled' : ''}}"
+      bindtap="onAddCart"
+      hover-class="{{disabled ? '' : 'is-pressing'}}"
+      hover-stay-time="150"
+    >
+      {{secondaryText}}
+    </button>
+    <button
+      class="primary-button price-bar__button {{disabled ? 'price-bar__button--disabled' : ''}}"
+      bindtap="onBuy"
+      hover-class="{{disabled ? '' : 'is-pressing'}}"
+      hover-stay-time="150"
+    >
+      {{primaryText}}
+    </button>
+  </view>
+</view>

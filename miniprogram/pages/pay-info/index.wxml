@@ -1,0 +1,70 @@
+<view class="page-shell pay-info-page">
+  <section-title
+    title="支付与确认说明"
+    desc="本期默认关闭真实在线支付，提交后请联系客服人工确认预约信息。"
+  ></section-title>
+
+  <view class="card pay-info-card" wx:if="{{order}}">
+    <view class="pay-info-card__top">
+      <view class="pay-info-card__main">
+        <text class="pay-info-card__order-no">订单号 {{order.orderNo}}</text>
+        <text class="pay-info-card__amount">应付金额 ￥{{order.payableAmount}}</text>
+      </view>
+      <status-badge status="{{order.status}}" tone="{{order.tone}}"></status-badge>
+    </view>
+
+    <view class="pay-info-card__items">
+      <text class="pay-info-card__item" wx:for="{{order.items}}" wx:key="id">{{item.displayName}}</text>
+    </view>
+  </view>
+
+  <view class="card pay-info-card">
+    <text class="pay-info-card__title">当前支付方式</text>
+    <text class="pay-info-card__desc" wx:if="{{!canOnlinePay}}">
+      在线支付暂未开通，订单已创建，请联系客服确认排单和后续流程。
+    </text>
+    <text class="pay-info-card__desc" wx:else>
+      当前环境已允许在线支付，可在后续接入 requestPayment 真实流程。
+    </text>
+    <text class="pay-info-card__desc">支付模式：{{paymentMode}}</text>
+  </view>
+
+  <view class="card pay-info-card">
+    <text class="pay-info-card__title">联系客服</text>
+    <button
+      wx:if="{{useContactButton}}"
+      class="ghost-button"
+      open-type="contact"
+    >
+      打开客服会话
+    </button>
+    <button
+      wx:else
+      class="ghost-button"
+      bindtap="handleContactFallback"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      查看客服说明
+    </button>
+  </view>
+
+  <view class="pay-info-page__actions">
+    <button
+      class="primary-button"
+      bindtap="handleViewOrders"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      查看订单列表
+    </button>
+    <button
+      class="ghost-button"
+      bindtap="handleBackService"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      返回服务页
+    </button>
+  </view>
+</view>

@@ -1,4 +1,0 @@
-<view class="section-title section-title--{{align}}">
-  <text class="section-title__headline">{{title}}</text>
-  <text class="section-title__desc" wx:if="{{subtitle}}">{{subtitle}}</text>
-</view>

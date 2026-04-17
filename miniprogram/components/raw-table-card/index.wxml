@@ -1,0 +1,62 @@
+<view class="card raw-table-card" wx:if="{{card}}">
+  <view class="raw-table-card__header">
+    <text class="raw-table-card__title">{{card.title}}</text>
+    <text class="raw-table-card__subtitle" wx:if="{{card.subtitle}}">{{card.subtitle}}</text>
+  </view>
+
+  <view wx:if="{{card.cardType === 'entry-group'}}" class="raw-table-card__entry-list">
+    <price-cell
+      wx:for="{{card.entries}}"
+      wx:key="entryId"
+      label="{{item.rawLabel}}"
+      price-text="{{item.displayPrice}}"
+      display-name="{{item.displayName}}"
+      service-id="{{item.serviceId}}"
+      section-id="{{item.sectionId}}"
+      entry-id="{{item.entryId}}"
+      selected="{{selectedKey === item.selectionKey}}"
+      bind:celltap="handleCellTap"
+    ></price-cell>
+  </view>
+
+  <scroll-view wx:else scroll-x="true" class="raw-table-card__scroll">
+    <view class="raw-table-card__table">
+      <view class="raw-table-card__row raw-table-card__row--head">
+        <text class="raw-table-card__corner">档位</text>
+        <text
+          class="raw-table-card__head"
+          wx:for="{{card.columns}}"
+          wx:key="key"
+        >
+          {{item.label}}
+        </text>
+      </view>
+      <view
+        class="raw-table-card__row"
+        wx:for="{{card.rows}}"
+        wx:key="rowId"
+      >
+        <text class="raw-table-card__row-label">{{item.label}}</text>
+        <view class="raw-table-card__cell-list">
+          <price-cell
+            wx:for="{{item.cells}}"
+            wx:key="selectionKey"
+            label="{{item.label}}"
+            price-text="{{item.priceText}}"
+            display-name="{{item.displayName}}"
+            service-id="{{item.serviceId}}"
+            table-id="{{item.tableId}}"
+            row-id="{{item.rowId}}"
+            column-key="{{item.columnKey}}"
+            selected="{{selectedKey === item.selectionKey}}"
+            bind:celltap="handleCellTap"
+          ></price-cell>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="raw-table-card__notes" wx:if="{{card.notes && card.notes.length}}">
+    <text class="raw-table-card__note" wx:for="{{card.notes}}" wx:key="*this">- {{item}}</text>
+  </view>
+</view>

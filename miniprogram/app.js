@@ -1,5 +1,7 @@
 App({
   globalData: {
-    currentOrder: null
+    currentOrder: null,
+    currentSelection: null,
+    guestProfile: null
   }
 })

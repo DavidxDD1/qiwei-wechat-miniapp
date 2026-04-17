@@ -1,0 +1,51 @@
+<view class="page-shell orders-page">
+  <section-title
+    title="订单列表"
+    desc="本地 Mock 创建的订单都会保存在这里，可按状态筛选查看。"
+  ></section-title>
+
+  <scroll-view class="orders-filters" scroll-x="true" show-scrollbar="false">
+    <view class="orders-filters__inner">
+      <button
+        wx:for="{{filters}}"
+        wx:key="id"
+        class="orders-filters__button {{activeStatus === item.id ? 'orders-filters__button--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleFilterChange"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        {{item.label}}
+      </button>
+    </view>
+  </scroll-view>
+
+  <empty-state
+    wx:if="{{!orders.length}}"
+    title="暂无订单"
+    desc="先去服务页选择价格项并提交意向订单，这里才会展示记录。"
+    action-text="去服务页"
+    bind:actiontap="handleGoService"
+  ></empty-state>
+
+  <view wx:else class="orders-list">
+    <view class="card orders-card" wx:for="{{orders}}" wx:key="orderNo">
+      <view class="orders-card__top">
+        <view class="orders-card__main">
+          <text class="orders-card__order-no">订单号 {{item.orderNo}}</text>
+          <text class="orders-card__time">{{item.createdAtText}}</text>
+        </view>
+        <status-badge status="{{item.status}}" tone="{{item.tone}}"></status-badge>
+      </view>
+
+      <text class="orders-card__amount">应付金额 ￥{{item.payableAmount}}</text>
+      <text class="orders-card__contact">联系人 {{item.contact.contactName}} / {{item.contact.contactPhone}}</text>
+
+      <view class="orders-card__items">
+        <text class="orders-card__item" wx:for="{{item.items}}" wx:key="id">{{item.displayName}}</text>
+      </view>
+
+      <text class="orders-card__remark" wx:if="{{item.remark}}">备注：{{item.remark}}</text>
+    </view>
+  </view>
+</view>

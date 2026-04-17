@@ -1,0 +1,62 @@
+<view class="page-shell home-page">
+  <view class="card home-hero">
+    <image class="home-hero__logo" src="/assets/logo.jpg" mode="aspectFit"></image>
+    <section-title
+      title="{{hero.title}}"
+      desc="{{hero.slogan}}"
+    ></section-title>
+    <text class="home-hero__subtitle">{{hero.subtitle}}</text>
+    <view class="home-hero__actions">
+      <button
+        class="primary-button home-hero__button"
+        bindtap="handleStart"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        进入原表价格页
+      </button>
+      <button
+        class="ghost-button home-hero__button"
+        bindtap="handleProfile"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        查看个人中心
+      </button>
+    </view>
+  </view>
+
+  <view class="home-section">
+    <section-title
+      title="服务入口"
+      desc="三大目录均按原表逐项还原，点击后进入对应价格结构"
+    ></section-title>
+    <view class="home-entry-list">
+      <view class="card home-entry-card" wx:for="{{entryCards}}" wx:key="id">
+        <text class="home-entry-card__title">{{item.title}}</text>
+        <text class="home-entry-card__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="home-section">
+    <section-title
+      title="当前能力"
+      desc="本地 Mock 全流程可跑，后续可升级到真实服务端"
+    ></section-title>
+    <view class="card home-summary">
+      <text class="home-summary__item" wx:for="{{serviceSummary}}" wx:key="*this">- {{item}}</text>
+    </view>
+  </view>
+
+  <view class="home-section">
+    <section-title
+      title="常见问题"
+      desc="支付、客服、原表来源等关键说明都放在这里"
+    ></section-title>
+    <view class="card home-faq" wx:for="{{faq}}" wx:key="q">
+      <text class="home-faq__q">{{item.q}}</text>
+      <text class="home-faq__a">{{item.a}}</text>
+    </view>
+  </view>
+</view>
