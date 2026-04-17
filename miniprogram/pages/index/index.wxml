@@ -1,8 +1,60 @@
-<view class="page index-page">
-  <view class="panel hero-panel">
-    <text class="hero-title">启卫电竞</text>
-    <text class="hero-subtitle">微信小程序 MVP</text>
-    <text class="muted hero-desc">快速选择服务并提交预约信息</text>
-    <button class="primary-btn hero-btn" bindtap="handleBooking">立即预约</button>
+<view class="page-shell index-page">
+  <view class="brand-panel">
+    <image
+      class="brand-logo-image"
+      src="/assets/logo.jpg"
+      mode="aspectFit"
+    ></image>
+    <section-title
+      title="启卫电竞"
+      subtitle="专业三角洲行动陪练平台"
+      align="center"
+    ></section-title>
+    <text class="brand-panel__english">QIWEI ESPORTS</text>
   </view>
+
+  <view class="feature-section">
+    <section-title
+      title="核心卖点"
+      subtitle="深夜开黑、上分冲榜、保底陪练，快速匹配即可开局"
+    ></section-title>
+    <view class="feature-grid">
+      <view class="feature-grid__item">
+        <service-card
+          title="高胜率保障"
+          subtitle="严选高段位队员"
+          hint="稳定执行、全程沟通"
+          badge="优势"
+          compact="{{true}}"
+        ></service-card>
+      </view>
+      <view class="feature-grid__item">
+        <service-card
+          title="实时匹配"
+          subtitle="快速锁定同区队友"
+          hint="减少等待，开局更快"
+          badge="效率"
+          compact="{{true}}"
+        ></service-card>
+      </view>
+      <view class="feature-grid__item">
+        <service-card
+          title="资深战神团队"
+          subtitle="经验丰富的带队手"
+          hint="冲分与娱乐都能覆盖"
+          badge="实力"
+          compact="{{true}}"
+        ></service-card>
+      </view>
+    </view>
+  </view>
+
+  <button
+    class="gradient-button index-page__cta"
+    bindtap="handleBooking"
+    hover-class="is-pressing"
+    hover-stay-time="150"
+  >
+    立即预约
+  </button>
 </view>

@@ -7,10 +7,17 @@
   ],
   "window": {
     "navigationBarTitleText": "启卫电竞",
-    "navigationBarBackgroundColor": "#000000",
+    "navigationBarBackgroundColor": "#0F1115",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#000000",
+    "backgroundColor": "#0F1115",
     "backgroundTextStyle": "light"
   },
-  "style": "v2"
+  "style": "v2",
+  "usingComponents": {
+    "section-title": "/components/SectionTitle/index",
+    "service-card": "/components/ServiceCard/index",
+    "mode-tag": "/components/ModeTag/index",
+    "tier-card": "/components/TierCard/index",
+    "price-bar": "/components/PriceBar/index"
+  }
 }

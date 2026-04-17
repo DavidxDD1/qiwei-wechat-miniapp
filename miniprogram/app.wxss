@@ -1,130 +1,118 @@
 page {
+  --bg-primary: #0F1115;
+  --bg-card: #171A21;
+  --brand-primary: #00F5A0;
+  --brand-secondary: #00C2FF;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A6B1;
+  --text-muted: #6B7280;
+  --danger: #FF4D4F;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --page-padding-x: 20px;
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --radius-tag: 8px;
+  --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-selected: 0 0 0 2px var(--brand-primary);
   min-height: 100%;
-  background: #000000;
-  color: #ffffff;
+  background:
+    radial-gradient(circle at top, rgba(0, 245, 160, 0.12), transparent 34%),
+    radial-gradient(circle at right top, rgba(0, 194, 255, 0.16), transparent 28%),
+    linear-gradient(180deg, #131722 0%, #0F1115 44%, #0B0D11 100%);
+  color: var(--text-primary);
+  font-size: 14px;
 }
 
 view,
 text,
 button,
-input {
+input,
+scroll-view {
   box-sizing: border-box;
-}
-
-.page {
-  min-height: 100vh;
-  padding: 48rpx 32rpx 56rpx;
-  background: #000000;
-}
-
-.panel {
-  padding: 32rpx;
-  border: 2rpx solid #1db954;
-  border-radius: 20rpx;
-  background: #0f0f0f;
-}
-
-.section {
-  margin-top: 28rpx;
-}
-
-.section-title {
-  display: block;
-  margin-bottom: 20rpx;
-  color: #8ef0b1;
-  font-size: 30rpx;
-  font-weight: 600;
-}
-
-.muted {
-  color: #a9a9a9;
-  font-size: 26rpx;
-}
-
-.price {
-  color: #1db954;
-  font-size: 40rpx;
-  font-weight: 700;
-}
-
-.option-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-}
-
-.option-btn {
-  width: 100%;
-  min-height: 88rpx;
-  padding: 0 24rpx;
-  border-radius: 14rpx;
-  background: #14301e;
-  color: #dfffe9;
-  font-size: 28rpx;
-  font-weight: 600;
-  line-height: 88rpx;
-  text-align: center;
-}
-
-.option-btn--active {
-  background: #1db954;
-  color: #041108;
-}
-
-.primary-btn {
-  width: 100%;
-  min-height: 92rpx;
-  margin-top: 36rpx;
-  border-radius: 14rpx;
-  background: #1db954;
-  color: #041108;
-  font-size: 30rpx;
-  font-weight: 700;
-  line-height: 92rpx;
-}
-
-.primary-btn--disabled {
-  background: #274231;
-  color: #7e9a88;
 }
 
 button {
   padding: 0;
   border: none;
+  background: transparent;
 }
 
 button::after {
   border: none;
 }
 
-.input-field {
-  width: 100%;
-  height: 92rpx;
-  margin-top: 12rpx;
-  padding: 0 24rpx;
-  border: 2rpx solid #1db954;
-  border-radius: 14rpx;
-  background: #111111;
-  color: #ffffff;
-  font-size: 28rpx;
+.page-shell {
+  min-height: 100vh;
+  padding: var(--space-3) var(--page-padding-x) 120px;
+  animation: pageFadeIn 300ms ease both;
 }
 
-.summary-row {
+.page-shell--center {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 18rpx;
-  padding-bottom: 18rpx;
-  border-bottom: 1rpx solid #1c1c1c;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.summary-label {
-  color: #a9a9a9;
-  font-size: 26rpx;
+.surface-card {
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  background: rgba(23, 26, 33, 0.96);
+  box-shadow: var(--shadow-card);
 }
 
-.summary-value {
-  color: #ffffff;
-  font-size: 28rpx;
+.label-text {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.muted-text {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.price-text {
+  color: var(--brand-primary);
+  font-size: 20px;
   font-weight: 600;
+}
+
+.gradient-button {
+  width: 100%;
+  height: 48px;
+  border-radius: var(--radius-button);
+  background: linear-gradient(90deg, #00F5A0, #00C2FF);
+  color: #071017;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: center;
+  box-shadow: 0 10px 26px rgba(0, 194, 255, 0.2);
+  transition: transform 150ms ease, opacity 150ms ease, box-shadow 200ms ease;
+}
+
+.gradient-button--disabled {
+  background: #2B313C;
+  color: var(--text-muted);
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.is-pressing {
+  transform: scale(0.98) !important;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

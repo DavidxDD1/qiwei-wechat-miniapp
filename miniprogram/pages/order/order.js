@@ -30,7 +30,8 @@ Page({
     tierLabel: '',
     price: '',
     gameId: '',
-    contact: ''
+    contact: '',
+    focusedField: ''
   },
 
   onLoad(options) {
@@ -76,6 +77,20 @@ Page({
 
     this.setData({
       [field]: value
+    })
+  },
+
+  handleFocus(event) {
+    const { field } = event.currentTarget.dataset
+
+    this.setData({
+      focusedField: field
+    })
+  },
+
+  handleBlur() {
+    this.setData({
+      focusedField: ''
     })
   },
 

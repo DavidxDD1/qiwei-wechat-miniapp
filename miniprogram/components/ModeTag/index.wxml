@@ -1,0 +1,9 @@
+<view
+  class="mode-tag {{selected ? 'mode-tag--selected' : ''}} {{disabled ? 'mode-tag--disabled' : ''}}"
+  bindtap="handleTap"
+  hover-class="{{disabled ? '' : 'is-pressing'}}"
+  hover-start-time="20"
+  hover-stay-time="150"
+>
+  <text class="mode-tag__text">{{label}}</text>
+</view>

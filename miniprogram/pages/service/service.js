@@ -14,7 +14,7 @@ Page({
   },
 
   handleServiceChange(event) {
-    const { id } = event.currentTarget.dataset
+    const id = event.detail.id || event.currentTarget.dataset.id
     const currentService = services.find((service) => service.id === id)
 
     this.setData({
@@ -38,7 +38,7 @@ Page({
       return
     }
 
-    const { id } = event.currentTarget.dataset
+    const id = event.detail.id || event.currentTarget.dataset.id
     const currentMode = this.data.modes.find((mode) => mode.id === id)
 
     this.setData({
@@ -60,7 +60,7 @@ Page({
       return
     }
 
-    const { id } = event.currentTarget.dataset
+    const id = event.detail.id || event.currentTarget.dataset.id
     const price = getPrice(selectedServiceId, selectedModeId, id, services)
 
     if (price === null) {

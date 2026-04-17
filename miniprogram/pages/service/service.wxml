@@ -1,58 +1,67 @@
-<view class="page">
-  <view class="panel">
-    <text class="section-title">选择服务</text>
-    <view class="option-list">
-      <button
-        wx:for="{{services}}"
-        wx:key="id"
-        class="option-btn {{selectedServiceId === item.id ? 'option-btn--active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="handleServiceChange"
-      >
-        {{item.name}}
-      </button>
+<view class="page-shell service-page">
+  <view class="service-page__section">
+    <section-title
+      title="选择服务"
+      subtitle="先选品类，再逐步锁定你要的模式与套餐"
+    ></section-title>
+    <view class="service-list">
+      <view class="service-list__item" wx:for="{{services}}" wx:key="id">
+        <service-card
+          item-id="{{item.id}}"
+          title="{{item.name}}"
+          subtitle="{{item.modes.length}} 种模式可选"
+          hint="精选队员在线接单"
+          badge="{{selectedServiceId === item.id ? '已选择' : '服务'}}"
+          accent="立即匹配"
+          selected="{{selectedServiceId === item.id}}"
+          bind:select="handleServiceChange"
+        ></service-card>
+      </view>
     </view>
   </view>
 
-  <view class="panel section" wx:if="{{modes.length}}">
-    <text class="section-title">选择模式</text>
-    <view class="option-list">
-      <button
-        wx:for="{{modes}}"
-        wx:key="id"
-        class="option-btn {{selectedModeId === item.id ? 'option-btn--active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="handleModeChange"
-      >
-        {{item.name}}
-      </button>
+  <view class="service-page__section" wx:if="{{modes.length}}">
+    <section-title
+      title="选择模式"
+      subtitle="横向选择适合你的带队风格"
+    ></section-title>
+    <scroll-view class="mode-scroll" scroll-x="true" show-scrollbar="false">
+      <view class="mode-scroll__inner">
+        <view class="mode-scroll__item" wx:for="{{modes}}" wx:key="id">
+          <mode-tag
+            item-id="{{item.id}}"
+            label="{{item.name}}"
+            selected="{{selectedModeId === item.id}}"
+            bind:select="handleModeChange"
+          ></mode-tag>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="service-page__section" wx:if="{{tiers.length}}">
+    <section-title
+      title="选择套餐"
+      subtitle="根据时长与预算，快速确定下单方案"
+    ></section-title>
+    <view class="tier-grid">
+      <view class="tier-grid__item" wx:for="{{tiers}}" wx:key="id">
+        <tier-card
+          item-id="{{item.id}}"
+          label="{{item.label}}"
+          price="{{item.price}}"
+          caption="选中后将展示总价"
+          selected="{{selectedTierId === item.id}}"
+          bind:select="handleTierChange"
+        ></tier-card>
+      </view>
     </view>
   </view>
 
-  <view class="panel section" wx:if="{{tiers.length}}">
-    <text class="section-title">选择套餐</text>
-    <view class="option-list">
-      <button
-        wx:for="{{tiers}}"
-        wx:key="id"
-        class="option-btn {{selectedTierId === item.id ? 'option-btn--active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="handleTierChange"
-      >
-        {{item.label}}
-      </button>
-    </view>
-  </view>
-
-  <view class="panel section" wx:if="{{price !== ''}}">
-    <text class="section-title">当前价格</text>
-    <text class="price">¥{{price}}</text>
-  </view>
-
-  <button
-    class="primary-btn {{selectedTierId ? '' : 'primary-btn--disabled'}}"
-    bindtap="handleNext"
-  >
-    进入订单页
-  </button>
+  <price-bar
+    price="{{price}}"
+    disabled="{{!selectedTierId}}"
+    button-text="立即预约"
+    bind:action="handleNext"
+  ></price-bar>
 </view>

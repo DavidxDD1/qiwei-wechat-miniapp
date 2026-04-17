@@ -1,45 +1,67 @@
-<view class="page">
-  <view class="panel">
-    <text class="section-title">订单信息</text>
-    <view class="summary-row">
-      <text class="summary-label">服务</text>
-      <text class="summary-value">{{serviceName}}</text>
-    </view>
-    <view class="summary-row">
-      <text class="summary-label">模式</text>
-      <text class="summary-value">{{modeName}}</text>
-    </view>
-    <view class="summary-row">
-      <text class="summary-label">套餐</text>
-      <text class="summary-value">{{tierLabel}}</text>
-    </view>
-    <view class="summary-row">
-      <text class="summary-label">价格</text>
-      <text class="summary-value">¥{{price}}</text>
+<view class="page-shell order-page">
+  <view class="order-page__section">
+    <section-title
+      title="确认订单"
+      subtitle="保持当前流程不变，仅升级为更清晰的视觉与填写体验"
+    ></section-title>
+    <view class="surface-card order-summary">
+      <service-card
+        title="{{serviceName}} - {{modeName}} - {{tierLabel}}"
+        subtitle="当前已锁定套餐"
+        hint="总价 ￥{{price}}"
+        badge="已选组合"
+        accent="待提交"
+        selected="{{true}}"
+      ></service-card>
+      <view class="order-summary__tags">
+        <mode-tag label="{{serviceName}}" selected="{{true}}"></mode-tag>
+        <mode-tag label="{{modeName}}" selected="{{true}}"></mode-tag>
+        <mode-tag label="{{tierLabel}}" selected="{{true}}"></mode-tag>
+      </view>
     </view>
   </view>
 
-  <view class="panel section">
-    <text class="section-title">填写资料</text>
-    <text class="muted">游戏ID</text>
-    <input
-      class="input-field"
-      placeholder="请输入游戏ID"
-      placeholder-class="input-placeholder"
-      data-field="gameId"
-      bindinput="handleInput"
-      value="{{gameId}}"
-    />
-    <text class="muted field-space">联系方式（必填）</text>
-    <input
-      class="input-field"
-      placeholder="请输入手机号或微信号"
-      placeholder-class="input-placeholder"
-      data-field="contact"
-      bindinput="handleInput"
-      value="{{contact}}"
-    />
+  <view class="order-page__section">
+    <section-title
+      title="填写预约信息"
+      subtitle="联系方式必填，提交后将生成订单号"
+    ></section-title>
+    <view class="surface-card form-panel">
+      <view class="field-group">
+        <text class="field-label">游戏ID</text>
+        <input
+          class="order-input {{focusedField === 'gameId' ? 'order-input--focused' : ''}}"
+          placeholder="请输入游戏ID"
+          placeholder-class="order-input__placeholder"
+          data-field="gameId"
+          bindinput="handleInput"
+          bindfocus="handleFocus"
+          bindblur="handleBlur"
+          value="{{gameId}}"
+        />
+      </view>
+      <view class="field-group">
+        <text class="field-label">联系方式（必填）</text>
+        <input
+          class="order-input {{focusedField === 'contact' ? 'order-input--focused' : ''}}"
+          placeholder="请输入手机号或微信号"
+          placeholder-class="order-input__placeholder"
+          data-field="contact"
+          bindinput="handleInput"
+          bindfocus="handleFocus"
+          bindblur="handleBlur"
+          value="{{contact}}"
+        />
+      </view>
+    </view>
   </view>
 
-  <button class="primary-btn" bindtap="handleSubmit">提交订单</button>
+  <button
+    class="gradient-button order-submit"
+    bindtap="handleSubmit"
+    hover-class="is-pressing"
+    hover-stay-time="150"
+  >
+    提交订单
+  </button>
 </view>
