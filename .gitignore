@@ -1,6 +1,7 @@
 # OS files
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
@@ -16,10 +17,23 @@ miniprogram_npm/
 # Build artifacts
 dist/
 build/
+coverage/
+.cache/
 
-# IDE files
+# IDE and editor files
 .idea/
 .vscode/
+.vs/
+*.suo
+*.user
+*.userossc
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
 
 # WeChat DevTools local config
 project.private.config.json
@@ -27,6 +41,10 @@ project.user.json
 miniprogram/project.private.config.json
 miniprogram/project.user.json
 
-# Temporary files
-*.tmp
-*.temp
+# Test artifacts
+playwright-report/
+test-results/
+
+# Local environment helpers
+.env
+.env.*
