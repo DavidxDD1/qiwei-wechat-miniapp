@@ -1,0 +1,8 @@
+<view class="page index-page">
+  <view class="panel hero-panel">
+    <text class="hero-title">启卫电竞</text>
+    <text class="hero-subtitle">微信小程序 MVP</text>
+    <text class="muted hero-desc">快速选择服务并提交预约信息</text>
+    <button class="primary-btn hero-btn" bindtap="handleBooking">立即预约</button>
+  </view>
+</view>

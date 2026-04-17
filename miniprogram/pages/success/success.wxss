@@ -1,0 +1,20 @@
+.success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-title {
+  display: block;
+  color: #1db954;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.success-tip {
+  display: block;
+  margin-top: 36rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+  line-height: 1.7;
+}

@@ -1,0 +1,58 @@
+<view class="page">
+  <view class="panel">
+    <text class="section-title">选择服务</text>
+    <view class="option-list">
+      <button
+        wx:for="{{services}}"
+        wx:key="id"
+        class="option-btn {{selectedServiceId === item.id ? 'option-btn--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleServiceChange"
+      >
+        {{item.name}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel section" wx:if="{{modes.length}}">
+    <text class="section-title">选择模式</text>
+    <view class="option-list">
+      <button
+        wx:for="{{modes}}"
+        wx:key="id"
+        class="option-btn {{selectedModeId === item.id ? 'option-btn--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleModeChange"
+      >
+        {{item.name}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel section" wx:if="{{tiers.length}}">
+    <text class="section-title">选择套餐</text>
+    <view class="option-list">
+      <button
+        wx:for="{{tiers}}"
+        wx:key="id"
+        class="option-btn {{selectedTierId === item.id ? 'option-btn--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="handleTierChange"
+      >
+        {{item.label}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel section" wx:if="{{price !== ''}}">
+    <text class="section-title">当前价格</text>
+    <text class="price">¥{{price}}</text>
+  </view>
+
+  <button
+    class="primary-btn {{selectedTierId ? '' : 'primary-btn--disabled'}}"
+    bindtap="handleNext"
+  >
+    进入订单页
+  </button>
+</view>

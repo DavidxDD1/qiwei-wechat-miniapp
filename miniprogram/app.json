@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/service/service",
+    "pages/order/order",
+    "pages/success/success"
+  ],
+  "window": {
+    "navigationBarTitleText": "启卫电竞",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2"
+}

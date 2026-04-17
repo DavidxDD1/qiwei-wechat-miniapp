@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="panel">
+    <text class="section-title">订单信息</text>
+    <view class="summary-row">
+      <text class="summary-label">服务</text>
+      <text class="summary-value">{{serviceName}}</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-label">模式</text>
+      <text class="summary-value">{{modeName}}</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-label">套餐</text>
+      <text class="summary-value">{{tierLabel}}</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-label">价格</text>
+      <text class="summary-value">¥{{price}}</text>
+    </view>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">填写资料</text>
+    <text class="muted">游戏ID</text>
+    <input
+      class="input-field"
+      placeholder="请输入游戏ID"
+      placeholder-class="input-placeholder"
+      data-field="gameId"
+      bindinput="handleInput"
+      value="{{gameId}}"
+    />
+    <text class="muted field-space">联系方式（必填）</text>
+    <input
+      class="input-field"
+      placeholder="请输入手机号或微信号"
+      placeholder-class="input-placeholder"
+      data-field="contact"
+      bindinput="handleInput"
+      value="{{contact}}"
+    />
+  </view>
+
+  <button class="primary-btn" bindtap="handleSubmit">提交订单</button>
+</view>

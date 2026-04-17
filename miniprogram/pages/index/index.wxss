@@ -1,0 +1,35 @@
+.index-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-panel {
+  width: 100%;
+  margin-top: 120rpx;
+  text-align: center;
+}
+
+.hero-title {
+  display: block;
+  color: #1db954;
+  font-size: 58rpx;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.hero-desc {
+  display: block;
+  margin-top: 24rpx;
+  line-height: 1.6;
+}
+
+.hero-btn {
+  margin-top: 56rpx;
+}

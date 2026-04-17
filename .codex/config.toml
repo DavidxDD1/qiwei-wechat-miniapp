@@ -1,0 +1,49 @@
+model = "gpt-5.4"
+model_provider = "openai"
+model_reasoning_effort = "high"
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[windows]
+sandbox = "elevated"
+
+[history]
+persistence = "save-all"
+persistent_instructions = """
+Follow ECC principles:
+1. Test-Driven Development (TDD) - write tests first, target 80%+ coverage when practical
+2. Immutability - prefer new objects over in-place mutation
+3. Security-First - validate all inputs, never hardcode secrets
+4. Conventional commits: feat|fix|refactor|docs|test|chore|perf|ci: description
+5. File organization: keep files focused and reasonably small
+6. Error handling: handle failures explicitly, never silently swallow them
+7. Input validation: use schema-based validation at system boundaries when appropriate
+"""
+
+[mcp_servers.github]
+command = "npx.cmd"
+args = ["-y", "@modelcontextprotocol/server-github"]
+
+[mcp_servers.context7]
+command = "npx.cmd"
+args = ["-y", "@upstash/context7-mcp@latest"]
+
+[mcp_servers.memory]
+command = "npx.cmd"
+args = ["-y", "@modelcontextprotocol/server-memory"]
+
+[mcp_servers.sequential-thinking]
+command = "npx.cmd"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[features]
+web_search_request = true
+
+[profiles.strict]
+approval_policy = "on-request"
+sandbox_mode = "workspace-read"
+
+[profiles.yolo]
+approval_policy = "never"
+sandbox_mode = "workspace-write"
