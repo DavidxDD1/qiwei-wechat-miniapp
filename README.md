@@ -12,10 +12,29 @@
 ## 项目结构
 
 ```text
+.
+├── .gitignore
+├── LICENSE
+├── README.md
+├── AGENTS.md
+└── miniprogram/
+    ├── app.js
+    ├── app.json
+    ├── app.wxss
+    ├── project.config.json
+    ├── data/
+    ├── pages/
+    └── utils/
+```
+
+## 小程序目录
+
+```text
 miniprogram/
 ├── app.js
 ├── app.json
 ├── app.wxss
+├── project.config.json
 ├── data/
 ├── pages/
 └── utils/
@@ -41,3 +60,13 @@ index -> service -> order -> success
 - 未使用云开发
 - 未使用第三方依赖
 - 未接入支付能力
+
+## 仓库约定
+
+- `project.config.json` 已提交，方便直接导入微信开发者工具
+- `project.private.config.json` 属于本地环境文件，已加入 `.gitignore`
+- 推荐在 `miniprogram/` 目录内完成小程序开发与调试
+
+## License
+
+MIT
