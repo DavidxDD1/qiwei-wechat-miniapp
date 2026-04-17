@@ -1,0 +1,24 @@
+{
+  "description": "启卫电竞微信小程序 MVP",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "coverView": true,
+    "compileHotReLoad": true,
+    "ignoreUploadUnusedFiles": true,
+    "minifyWXSS": true,
+    "showShadowRootInWxmlPanel": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "trial",
+  "appid": "touristappid",
+  "projectname": "qiwei-wechat-miniapp",
+  "miniprogramRoot": "./",
+  "condition": {}
+}
