@@ -1,5 +1,5 @@
 {
-  "description": "启卫电竞微信小程序 MVP",
+  "description": "\u542f\u536b\u7535\u7ade\u5fae\u4fe1\u5c0f\u7a0b\u5e8f V1.5 - \u539f\u8868\u4ef7\u683c\u8fd8\u539f\u7248",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -36,7 +36,7 @@
   "compileType": "miniprogram",
   "libVersion": "trial",
   "appid": "touristappid",
-  "projectname": "qiwei-wechat-miniapp",
+  "projectname": "qiwei-wechat-miniapp-v1.5",
   "miniprogramRoot": "./",
   "condition": {},
   "simulatorPluginLibVersion": {},
