@@ -2,6 +2,7 @@ const assert = require('node:assert/strict')
 const test = require('node:test')
 
 const { pricingFull } = require('../miniprogram/data/pricingFull')
+const { pickFeaturedOffers } = require('../miniprogram/utils/featured')
 const { getPrice } = require('../miniprogram/utils/getPrice')
 const { generateOrderId } = require('../miniprogram/utils/generateOrderId')
 const { validateOrderForm } = require('../miniprogram/utils/validateOrderForm')
@@ -31,6 +32,44 @@ test('generateOrderId returns QW prefixed id with timestamp and random suffix', 
   const orderId = generateOrderId()
 
   assert.match(orderId, /^QW\d{16}$/)
+})
+
+test('pickFeaturedOffers returns unique hot sale items with prices', () => {
+  const offers = pickFeaturedOffers(pricingFull, 4, () => 0.23)
+
+  assert.equal(offers.length, 4)
+  assert.equal(new Set(offers.map((item) => item.id)).size, 4)
+  assert.ok(offers.every((item) => item.price > 0))
+  assert.ok(offers.every((item) => item.title))
+  assert.ok(offers.every((item) => item.priceText))
+})
+
+test('pickFeaturedOffers respects available data size', () => {
+  const offers = pickFeaturedOffers(
+    {
+      services: [
+        {
+          id: 'escort',
+          title: '护航单',
+          type: 'entry-groups',
+          sections: [
+            {
+              id: 'escort_trial',
+              title: '体验单',
+              entries: [
+                { id: 'trial_1', rawLabel: '128保888', price: 128, displayPrice: '￥128' }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    4,
+    () => 0.5
+  )
+
+  assert.equal(offers.length, 1)
+  assert.equal(offers[0].price, 128)
 })
 
 test('validateOrderForm rejects missing items', () => {
