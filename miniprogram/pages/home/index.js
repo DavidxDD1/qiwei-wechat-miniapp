@@ -1,19 +1,35 @@
 const homeContent = require('../../data/homeContent')
+const { pricingFull } = require('../../data/pricingFull')
+const { pickFeaturedOffers } = require('../../utils/featured')
 const { switchTab } = require('../../utils/router')
 
 Page({
   data: {
     hero: homeContent.hero,
-    entryCards: homeContent.entryCards,
     faq: homeContent.faq,
-    serviceSummary: homeContent.serviceSummary
+    serviceSummary: homeContent.serviceSummary,
+    hotSales: []
   },
 
-  handleStart() {
-    switchTab('/pages/service/index')
+  onLoad() {
+    this.refreshHotSales()
+  },
+
+  onShow() {
+    this.refreshHotSales()
+  },
+
+  refreshHotSales() {
+    this.setData({
+      hotSales: pickFeaturedOffers(pricingFull, 4)
+    })
   },
 
   handleProfile() {
     switchTab('/pages/profile/index')
+  },
+
+  handleOpenService() {
+    switchTab('/pages/service/index')
   }
 })
