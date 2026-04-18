@@ -31,19 +31,23 @@
   flex: 1;
 }
 
+.home-hero__button--single {
+  width: 100%;
+}
+
 .home-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.home-entry-list {
+.home-hot-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.home-entry-card,
+.home-hot-card,
 .home-summary,
 .home-faq {
   padding: 16px;
@@ -52,14 +56,27 @@
   gap: 10px;
 }
 
-.home-entry-card__title,
+.home-hot-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-hot-card__title,
 .home-faq__q {
   color: #FFFFFF;
   font-size: 16px;
   font-weight: 500;
 }
 
-.home-entry-card__desc,
+.home-hot-card__price {
+  color: #00F5A0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.home-hot-card__desc,
 .home-summary__item,
 .home-faq__a {
   color: #A0A6B1;
