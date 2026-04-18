@@ -6,35 +6,36 @@
       desc="{{hero.slogan}}"
     ></section-title>
     <text class="home-hero__subtitle">{{hero.subtitle}}</text>
-    <view class="home-hero__actions">
-      <button
-        class="primary-button home-hero__button"
-        bindtap="handleStart"
-        hover-class="is-pressing"
-        hover-stay-time="150"
-      >
-        进入原表价格页
-      </button>
-      <button
-        class="ghost-button home-hero__button"
-        bindtap="handleProfile"
-        hover-class="is-pressing"
-        hover-stay-time="150"
-      >
-        查看个人中心
-      </button>
-    </view>
+    <button
+      class="ghost-button home-hero__button home-hero__button--single"
+      bindtap="handleProfile"
+      hover-class="is-pressing"
+      hover-stay-time="150"
+    >
+      查看个人中心
+    </button>
   </view>
 
   <view class="home-section">
     <section-title
-      title="服务入口"
-      desc="三大目录均按原表逐项还原，点击后进入对应价格结构"
+      title="今日热销"
+      desc="从店内服务里随机推荐几项热门内容，点卡片可直接去服务页继续选择。"
     ></section-title>
-    <view class="home-entry-list">
-      <view class="card home-entry-card" wx:for="{{entryCards}}" wx:key="id">
-        <text class="home-entry-card__title">{{item.title}}</text>
-        <text class="home-entry-card__desc">{{item.desc}}</text>
+    <view class="home-hot-list">
+      <view
+        class="card home-hot-card"
+        wx:for="{{hotSales}}"
+        wx:key="id"
+        bindtap="handleOpenService"
+        hover-class="is-pressing"
+        hover-stay-time="150"
+      >
+        <view class="home-hot-card__top">
+          <text class="tag">{{item.tag}}</text>
+          <text class="home-hot-card__price">{{item.priceText}}</text>
+        </view>
+        <text class="home-hot-card__title">{{item.title}}</text>
+        <text class="home-hot-card__desc">{{item.subtitle}}</text>
       </view>
     </view>
   </view>
