@@ -34,6 +34,12 @@ coverage/
 *.bak
 *.orig
 *.rej
+*.code-workspace
+
+# Local AI agent config
+.agents/
+.codex/
+AGENTS.md
 
 # WeChat DevTools local config
 project.private.config.json
