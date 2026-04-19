@@ -2,24 +2,36 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 10px;
+  gap: 6px;
+  padding: 5px 10px;
   border-radius: 999px;
   font-size: 12px;
+  border: 1px solid transparent;
 }
 
 .status-badge--pending {
-  background: rgba(0, 194, 255, 0.12);
-  color: #00C2FF;
+  background: rgba(77, 189, 255, 0.12);
+  border-color: rgba(77, 189, 255, 0.18);
+  color: var(--brand-secondary);
 }
 
 .status-badge--confirmed {
-  background: rgba(0, 245, 160, 0.12);
-  color: #00F5A0;
+  background: rgba(82, 242, 184, 0.12);
+  border-color: rgba(82, 242, 184, 0.18);
+  color: var(--brand-primary);
 }
 
 .status-badge--cancelled {
-  background: rgba(255, 77, 79, 0.12);
-  color: #FF4D4F;
+  background: rgba(255, 90, 103, 0.12);
+  border-color: rgba(255, 90, 103, 0.18);
+  color: var(--danger);
+}
+
+.status-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .status-badge__text {

@@ -1,33 +1,59 @@
 .price-cell {
-  min-height: 56px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #2A2F3A;
-  background: #141820;
+  min-height: 92px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(130, 154, 184, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%),
+    rgba(8, 16, 30, 0.72);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   transition: all 0.2s ease;
 }
 
 .price-cell--selected {
-  border: 2px solid #00F5A0;
-  box-shadow: 0 0 20px rgba(0, 245, 160, 0.4);
-  transform: scale(1.02);
+  border: 1px solid rgba(82, 242, 184, 0.38);
+  box-shadow: 0 14px 28px rgba(82, 242, 184, 0.14);
+  transform: translateY(-2px);
 }
 
 .price-cell--disabled {
   opacity: 0.45;
 }
 
+.price-cell__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
 .price-cell__label {
-  color: #A0A6B1;
+  color: var(--text-secondary);
   font-size: 12px;
+  line-height: 1.5;
 }
 
 .price-cell__value {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.price-cell__badge {
+  flex: none;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(82, 242, 184, 0.12);
+  color: var(--brand-primary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.price-cell__hint {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  line-height: 1.4;
 }

@@ -1,3 +1,10 @@
 {
-  "navigationBarTitleText": "服务选择"
+  "navigationBarTitleText": "服务选择",
+  "usingComponents": {
+    "chip-tabs": "/components/chip-tabs/index",
+    "entry-offer-list": "/components/entry-offer-list/index",
+    "raw-table-card": "/components/raw-table-card/index",
+    "empty-state": "/components/empty-state/index",
+    "price-bar": "/components/price-bar/index"
+  }
 }

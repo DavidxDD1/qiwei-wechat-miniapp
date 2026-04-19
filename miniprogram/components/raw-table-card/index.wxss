@@ -1,5 +1,5 @@
 .raw-table-card {
-  padding: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -7,19 +7,64 @@
 
 .raw-table-card__header {
   display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.raw-table-card__headline {
+  min-width: 0;
+  flex: 1;
+  display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
 .raw-table-card__title {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .raw-table-card__subtitle {
-  color: #A0A6B1;
+  color: var(--text-secondary);
   font-size: 13px;
+  line-height: 1.6;
+}
+
+.raw-table-card__summary {
+  flex: none;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(8, 16, 30, 0.54);
+  border: 1px solid rgba(130, 154, 184, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.raw-table-card__summary-value {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.raw-table-card__summary-label {
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.raw-table-card__guide {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(77, 189, 255, 0.08);
+  border: 1px solid rgba(77, 189, 255, 0.12);
+}
+
+.raw-table-card__guide-text {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .raw-table-card__entry-list {
@@ -34,6 +79,7 @@
 
 .raw-table-card__table {
   min-width: 720px;
+  padding-bottom: 4px;
 }
 
 .raw-table-card__row {
@@ -44,6 +90,8 @@
 
 .raw-table-card__row--head {
   margin-top: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(130, 154, 184, 0.12);
 }
 
 .raw-table-card__corner,
@@ -51,12 +99,13 @@
 .raw-table-card__head {
   width: 92px;
   flex: none;
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 13px;
 }
 
 .raw-table-card__head {
   text-align: center;
+  color: var(--text-secondary);
 }
 
 .raw-table-card__cell-list {
@@ -67,13 +116,23 @@
 }
 
 .raw-table-card__notes {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(8, 16, 30, 0.5);
+  border: 1px solid rgba(130, 154, 184, 0.14);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+}
+
+.raw-table-card__notes-title {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .raw-table-card__note {
-  color: #A0A6B1;
+  color: var(--text-secondary);
   font-size: 12px;
   line-height: 1.7;
 }

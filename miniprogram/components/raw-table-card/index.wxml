@@ -1,7 +1,18 @@
 <view class="card raw-table-card" wx:if="{{card}}">
   <view class="raw-table-card__header">
-    <text class="raw-table-card__title">{{card.title}}</text>
-    <text class="raw-table-card__subtitle" wx:if="{{card.subtitle}}">{{card.subtitle}}</text>
+    <view class="raw-table-card__headline">
+      <text class="raw-table-card__title">{{card.title}}</text>
+      <text class="raw-table-card__subtitle" wx:if="{{card.subtitle}}">{{card.subtitle}}</text>
+    </view>
+    <view class="raw-table-card__summary">
+      <text class="raw-table-card__summary-value" wx:if="{{card.cardType === 'entry-group'}}">{{card.entries.length}} 项</text>
+      <text class="raw-table-card__summary-value" wx:else>{{card.rows.length}} × {{card.columns.length}}</text>
+      <text class="raw-table-card__summary-label">{{card.cardType === 'entry-group' ? '可选价格项' : '价格矩阵'}}</text>
+    </view>
+  </view>
+
+  <view class="raw-table-card__guide" wx:if="{{card.cardType !== 'entry-group'}}">
+    <text class="raw-table-card__guide-text">左右滑动查看完整表格，点击单元格即可锁定当前方案。</text>
   </view>
 
   <view wx:if="{{card.cardType === 'entry-group'}}" class="raw-table-card__entry-list">
@@ -49,6 +60,7 @@
             row-id="{{item.rowId}}"
             column-key="{{item.columnKey}}"
             selected="{{selectedKey === item.selectionKey}}"
+            disabled="{{item.disabled}}"
             bind:celltap="handleCellTap"
           ></price-cell>
         </view>
@@ -57,6 +69,7 @@
   </scroll-view>
 
   <view class="raw-table-card__notes" wx:if="{{card.notes && card.notes.length}}">
+    <text class="raw-table-card__notes-title">规则说明</text>
     <text class="raw-table-card__note" wx:for="{{card.notes}}" wx:key="*this">- {{item}}</text>
   </view>
 </view>

@@ -4,6 +4,10 @@
   hover-class="{{disabled ? '' : 'is-pressing'}}"
   hover-stay-time="150"
 >
-  <text class="price-cell__label">{{label}}</text>
+  <view class="price-cell__top">
+    <text class="price-cell__label">{{label}}</text>
+    <text class="price-cell__badge" wx:if="{{selected}}">已选</text>
+  </view>
   <text class="price-cell__value">{{priceText}}</text>
+  <text class="price-cell__hint">{{disabled ? '当前不可选' : (selected ? '方案已锁定' : '点击锁定价格')}}</text>
 </view>

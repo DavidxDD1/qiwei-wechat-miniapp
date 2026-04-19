@@ -1,4 +1,5 @@
 <view class="card empty-state">
+  <text class="empty-state__eyebrow">EMPTY STATE</text>
   <text class="empty-state__title">{{title}}</text>
   <text class="empty-state__desc" wx:if="{{desc}}">{{desc}}</text>
   <button

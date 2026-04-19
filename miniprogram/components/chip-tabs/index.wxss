@@ -1,0 +1,63 @@
+.chip-tabs {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.chip-tabs__inner {
+  display: inline-flex;
+  gap: 10px;
+  padding-right: 20px;
+}
+
+.chip-tabs__item {
+  min-width: 112px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(130, 154, 184, 0.16);
+  background: rgba(16, 24, 38, 0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.chip-tabs__item--active {
+  border-color: rgba(82, 242, 184, 0.28);
+  background:
+    linear-gradient(180deg, rgba(82, 242, 184, 0.14), rgba(17, 24, 38, 0.92)),
+    rgba(16, 24, 38, 0.92);
+  box-shadow: 0 12px 24px rgba(82, 242, 184, 0.12);
+}
+
+.chip-tabs--secondary .chip-tabs__item {
+  min-width: 136px;
+  border-radius: 16px;
+  background: rgba(10, 16, 27, 0.82);
+}
+
+.chip-tabs--secondary .chip-tabs__item--active {
+  border-color: rgba(77, 189, 255, 0.24);
+  background:
+    linear-gradient(180deg, rgba(77, 189, 255, 0.16), rgba(10, 16, 27, 0.92)),
+    rgba(10, 16, 27, 0.9);
+  box-shadow: 0 12px 24px rgba(77, 189, 255, 0.12);
+}
+
+.chip-tabs__label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.chip-tabs__caption {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.chip-tabs__item--active .chip-tabs__caption {
+  color: var(--text-secondary);
+}

@@ -1,43 +1,60 @@
 module.exports = {
   hero: {
-    title: '\u542f\u536b\u7535\u7ade',
-    subtitle: '\u539f\u8868\u4ef7\u683c\u4e25\u683c\u8fd8\u539f\uff0c\u5feb\u901f\u9009\u62e9\u670d\u52a1\u5e76\u63d0\u4ea4\u9884\u7ea6\u610f\u5411',
-    slogan: '\u4e13\u4e1a\u4e09\u89d2\u6d32\u884c\u52a8\u966a\u7ec3\u5e73\u53f0'
+    title: '启卫电竞',
+    subtitle: '原表价格严格还原，快速选择服务并提交预约意向',
+    slogan: '专业三角洲行动陪练平台'
   },
   entryCards: [
     {
       id: 'escort',
-      title: '\u62a4\u822a\u5355',
-      desc: '\u4f53\u9a8c\u5355\u3001\u6b63\u5e38\u5355\u3001\u5355\u5c40\u4fdd\u5e95\u5355\u5b8c\u6574\u5c55\u793a'
+      title: '护航单',
+      desc: '体验单、正常单、单局保底单完整展示'
     },
     {
       id: 'male',
-      title: '\u7537\u966a\u4ef7\u683c\u8868',
-      desc: '\u9876\u5c16\u3001\u6218\u795e\u3001\u9b54\u738b\u3001\u751c\u871c\u966a\u539f\u8868\u7ed3\u6784'
+      title: '男陪价格表',
+      desc: '顶尖、战神、魔王、甜蜜陪原表结构'
     },
     {
       id: 'female',
-      title: '\u5973\u966a\u4ef7\u683c\u8868',
-      desc: '\u5a31\u4e50\u3001\u5a31\u4e50\u6280\u672f\u3001\u9876\u5c16\u3001\u6218\u795e\u3001\u9b54\u738b\u3001\u751c\u871c\u966a'
+      title: '女陪价格表',
+      desc: '娱乐、娱乐技术、顶尖、战神、魔王、甜蜜陪'
+    }
+  ],
+  journeySteps: [
+    {
+      id: 'browse',
+      title: '浏览原表',
+      desc: '按服务矩阵、档位与时长快速定位到目标价格区间。'
+    },
+    {
+      id: 'lock',
+      title: '锁定方案',
+      desc: '点击价格单元格后即可加入购物车，或直接发起预约意向。'
+    },
+    {
+      id: 'confirm',
+      title: '人工确认',
+      desc: '提交联系方式后进入客服确认流程，便于继续沟通安排。'
     }
   ],
   faq: [
     {
-      q: '\u672c\u671f\u652f\u6301\u5728\u7ebf\u652f\u4ed8\u5417\uff1f',
-      a: '\u5f53\u524d\u4ec5\u652f\u6301\u4eba\u5de5\u786e\u8ba4\u8ba2\u5355\uff0c\u5728\u7ebf\u652f\u4ed8\u9ed8\u8ba4\u5173\u95ed\u3002'
+      q: '本期支持在线支付吗？',
+      a: '当前仅支持人工确认订单，在线支付默认关闭。'
     },
     {
-      q: '\u4ef7\u683c\u6765\u6e90\u662f\u4ec0\u4e48\uff1f',
-      a: '\u6240\u6709\u4ef7\u683c\u5747\u4e25\u683c\u6765\u81ea\u542f\u536b\u7535\u7ade\u539f\u59cb\u4ef7\u683c\u8868\uff0c\u4e0d\u505a\u62bd\u8c61\u5408\u5e76\u3002'
+      q: '价格来源是什么？',
+      a: '所有价格均严格来自启卫电竞原始价格表，不做抽象合并。'
     },
     {
-      q: '\u73b0\u5728\u80fd\u76f4\u63a5\u8054\u7cfb\u5ba2\u670d\u5417\uff1f',
-      a: '\u672c\u671f\u4fdd\u7559\u5ba2\u670d\u5165\u53e3\u5360\u4f4d\uff0c\u9ed8\u8ba4\u5c55\u793a\u4eba\u5de5\u786e\u8ba4\u8bf4\u660e\u3002'
+      q: '现在能直接联系客服吗？',
+      a: '本期保留客服入口占位，默认展示人工确认说明。'
     }
   ],
   serviceSummary: [
-    '\u539f\u8868\u4ef7\u683c\u9010\u6761\u8fd8\u539f',
-    '\u8d2d\u7269\u8f66\u4e0e\u8ba2\u5355\u610f\u5411\u672c\u5730\u53ef\u8dd1\u901a',
-    '\u540e\u7eed\u53ef\u5e73\u6ed1\u5347\u7ea7\u5230\u4e91\u7aef'
+    '原表价格逐条还原',
+    '购物车与订单意向本地可跑通',
+    '后续可平滑升级到云端'
   ]
 }

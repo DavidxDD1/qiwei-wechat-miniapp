@@ -3,47 +3,83 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 72px;
-  padding: 12px 20px;
+  min-height: var(--page-bottom-offset);
+  padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
   border-right: none;
   border-bottom: none;
   border-left: none;
   border-radius: 0;
-  background: rgba(23, 26, 33, 0.98);
+  background:
+    linear-gradient(180deg, rgba(77, 189, 255, 0.08), transparent 56%),
+    rgba(10, 16, 27, 0.97);
+  backdrop-filter: blur(8px);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   gap: 12px;
   z-index: 99;
 }
 
 .price-bar__meta {
   min-width: 0;
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+}
+
+.price-bar__label-row {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.price-bar__status {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(130, 154, 184, 0.18);
+  color: var(--text-tertiary);
+  background: rgba(17, 24, 38, 0.9);
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.price-bar__status--active {
+  border-color: rgba(82, 242, 184, 0.18);
+  color: var(--brand-primary);
+  background: rgba(82, 242, 184, 0.1);
 }
 
 .price-bar__label {
-  color: #A0A6B1;
+  width: 100%;
+  color: var(--text-secondary);
   font-size: 12px;
   line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price-bar__value {
-  color: #00F5A0;
-  font-size: 20px;
-  font-weight: 600;
+  align-self: flex-start;
+  color: var(--brand-primary);
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .price-bar__actions {
   display: flex;
   gap: 8px;
+  width: 100%;
 }
 
 .price-bar__button {
-  min-width: 104px;
+  flex: 1;
+  min-width: 0;
   padding: 0 14px;
 }
 

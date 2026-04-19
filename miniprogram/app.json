@@ -47,6 +47,9 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "section-title": "/components/section-title/index",
+    "page-hero": "/components/page-hero/index",
+    "chip-tabs": "/components/chip-tabs/index",
+    "entry-offer-list": "/components/entry-offer-list/index",
     "raw-table-card": "/components/raw-table-card/index",
     "price-cell": "/components/price-cell/index",
     "price-bar": "/components/price-bar/index",

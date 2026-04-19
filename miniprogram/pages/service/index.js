@@ -2,155 +2,42 @@ const { pricingFull } = require('../../data/pricingFull')
 const { getCatalog } = require('../../services/catalog')
 const { addToCart } = require('../../services/cart')
 const { getPrice } = require('../../utils/getPrice')
-const { formatRawPrice } = require('../../utils/format')
 const { navigateTo } = require('../../utils/router')
-
-function buildSelectionKey(locator) {
-  return [
-    locator.serviceId,
-    locator.tableId,
-    locator.rowId,
-    locator.columnKey,
-    locator.sectionId,
-    locator.entryId
-  ]
-    .filter(Boolean)
-    .join('|')
-}
-
-function buildEntryCard(service, section) {
-  return {
-    id: section.id,
-    cardType: 'entry-group',
-    title: section.title,
-    subtitle: '点击任一保底档位后，可加入购物车或直接下单',
-    entries: (section.entries || []).map((entry) => ({
-      serviceId: service.id,
-      sectionId: section.id,
-      entryId: entry.id,
-      rawLabel: entry.rawLabel,
-      displayPrice: entry.displayPrice || formatRawPrice(entry.price),
-      selectionKey: buildSelectionKey({
-        serviceId: service.id,
-        sectionId: section.id,
-        entryId: entry.id
-      }),
-      displayName: `${service.title} / ${section.title} / ${entry.rawLabel}`
-    })),
-    notes: []
-  }
-}
-
-function buildTableCard(service, table) {
-  return {
-    id: table.id,
-    cardType: 'raw-table',
-    title: table.title,
-    subtitle: '点击表格单元格即可锁定原表价格',
-    columns: table.columns,
-    rows: (table.rows || []).map((row) => ({
-      rowId: row.id,
-      label: row.label,
-      cells: (table.columns || []).map((column) => {
-        const value = row.values[column.key]
-        const locator = {
-          serviceId: service.id,
-          tableId: table.id,
-          rowId: row.id,
-          columnKey: column.key
-        }
-
-        return {
-          serviceId: service.id,
-          tableId: table.id,
-          rowId: row.id,
-          columnKey: column.key,
-          label: column.label,
-          priceText: value ? formatRawPrice(value.raw) : '--',
-          selectionKey: buildSelectionKey(locator),
-          displayName: `${service.title} / ${table.title} / ${row.label} / ${column.label}`
-        }
-      })
-    })),
-    notes: table.notes || []
-  }
-}
-
-function buildServiceView(service) {
-  if (!service) {
-    return {
-      subTabs: [],
-      cardsMap: {},
-      defaultId: '',
-      activeCard: null
-    }
-  }
-
-  if (service.type === 'entry-groups') {
-    const subTabs = (service.sections || []).map((section) => ({
-      id: section.id,
-      title: section.title
-    }))
-    const cardsMap = {}
-
-    ;(service.sections || []).forEach((section) => {
-      cardsMap[section.id] = buildEntryCard(service, section)
-    })
-
-    const defaultId = subTabs[0] ? subTabs[0].id : ''
-    return {
-      subTabs,
-      cardsMap,
-      defaultId,
-      activeCard: cardsMap[defaultId] || null
-    }
-  }
-
-  const subTabs = (service.tables || []).map((table) => ({
-    id: table.id,
-    title: table.title
-  }))
-  const cardsMap = {}
-
-  ;(service.tables || []).forEach((table) => {
-    cardsMap[table.id] = buildTableCard(service, table)
-  })
-
-  const defaultId = subTabs[0] ? subTabs[0].id : ''
-  return {
-    subTabs,
-    cardsMap,
-    defaultId,
-    activeCard: cardsMap[defaultId] || null
-  }
-}
-
-function buildDirectItem(selectedLocator, selectedPrice, selectedDisplay) {
-  return {
-    id: `direct_${Date.now()}`,
-    locator: selectedLocator,
-    quantity: 1,
-    price: selectedPrice,
-    displayName: selectedDisplay,
-    checked: true,
-    remark: ''
-  }
-}
+const { buildSelectionState } = require('./selectionState')
+const { startDirectOrder } = require('./directOrder')
+const {
+  buildSelectionKey,
+  buildServiceTabs,
+  buildServiceView,
+  buildHeroData
+} = require('./serviceView')
 
 Page({
   data: {
     services: [],
+    serviceTabs: [],
     activeServiceId: 'escort',
     subTabs: [],
     activeTableId: '',
     activeCard: null,
+    activeServiceEyebrow: 'Pricing Console',
+    activeServiceTitle: '原表价格目录',
+    activeServiceDescription: '',
+    activeServiceBadge: '',
+    serviceStats: [],
     selectedLocator: null,
     selectedKey: '',
     selectedDisplay: '',
-    selectedPrice: 0
+    selectedPrice: 0,
+    selectionEyebrow: '等待选择',
+    selectionTitle: '请选择一个价格目录',
+    selectionDescription: '',
+    selectionPriceText: '待选择',
+    selectionPreviewItems: []
   },
 
-  async onLoad() {
+  async onLoad(options) {
+    this.defaultServiceId = options && options.serviceId ? options.serviceId : 'escort'
     await this.loadCatalog()
   },
 
@@ -158,7 +45,7 @@ Page({
     try {
       const result = await getCatalog()
       const services = result.services || pricingFull.services || []
-      const defaultService = services.find((item) => item.id === 'escort') || services[0] || null
+      const defaultService = services.find((item) => item.id === this.defaultServiceId) || services[0] || null
 
       this.setActiveService(services, defaultService ? defaultService.id : '')
     } catch (error) {
@@ -169,25 +56,58 @@ Page({
     }
   },
 
+  applySelection(locator, displayName, price) {
+    const service = (this.data.services || []).find((item) => item.id === this.data.activeServiceId) || null
+    const view = buildServiceView(service)
+    const heroData = service ? buildHeroData(service, view, true) : {}
+    const selectionState = buildSelectionState(this.data.activeCard, displayName, price)
+
+    this.setData({
+      selectedLocator: locator,
+      selectedKey: buildSelectionKey(locator),
+      selectedDisplay: displayName,
+      selectedPrice: price,
+      serviceStats: heroData.serviceStats || [],
+      selectionEyebrow: selectionState.selectionEyebrow,
+      selectionTitle: selectionState.selectionTitle,
+      selectionDescription: selectionState.selectionDescription,
+      selectionPriceText: selectionState.selectionPriceText,
+      selectionPreviewItems: selectionState.previewItems || []
+    })
+  },
+
   setActiveService(services, serviceId) {
     const service = (services || []).find((item) => item.id === serviceId) || null
     const view = buildServiceView(service)
+    const heroData = service ? buildHeroData(service, view, false) : {}
+    const selectionState = buildSelectionState(view.activeCard, '', 0)
 
     this.setData({
       services,
+      serviceTabs: buildServiceTabs(services),
       activeServiceId: serviceId,
       subTabs: view.subTabs,
       activeTableId: view.defaultId,
       activeCard: view.activeCard,
+      activeServiceEyebrow: heroData.activeServiceEyebrow || 'Pricing Console',
+      activeServiceTitle: heroData.activeServiceTitle || '原表价格目录',
+      activeServiceDescription: heroData.activeServiceDescription || '',
+      activeServiceBadge: heroData.activeServiceBadge || '',
+      serviceStats: heroData.serviceStats || [],
       selectedLocator: null,
       selectedKey: '',
       selectedDisplay: '',
-      selectedPrice: 0
+      selectedPrice: 0,
+      selectionEyebrow: selectionState.selectionEyebrow,
+      selectionTitle: selectionState.selectionTitle,
+      selectionDescription: selectionState.selectionDescription,
+      selectionPriceText: selectionState.selectionPriceText,
+      selectionPreviewItems: selectionState.previewItems || []
     })
   },
 
-  handleServiceChange(event) {
-    const serviceId = event.currentTarget.dataset.id
+  handleServiceSelect(event) {
+    const serviceId = event.detail.id
 
     if (!serviceId || serviceId === this.data.activeServiceId) {
       return
@@ -196,25 +116,35 @@ Page({
     this.setActiveService(this.data.services, serviceId)
   },
 
-  handleSubChange(event) {
-    const subId = event.currentTarget.dataset.id
+  handleSubSelect(event) {
+    const subId = event.detail.id
     const service = (this.data.services || []).find((item) => item.id === this.data.activeServiceId) || null
     const view = buildServiceView(service)
+    const nextCard = view.cardsMap[subId] || null
+    const heroData = service ? buildHeroData(service, view, false) : {}
+    const selectionState = buildSelectionState(nextCard, '', 0)
 
     this.setData({
       subTabs: view.subTabs,
       activeTableId: subId,
-      activeCard: view.cardsMap[subId] || null,
+      activeCard: nextCard,
+      serviceStats: heroData.serviceStats || [],
       selectedLocator: null,
       selectedKey: '',
       selectedDisplay: '',
-      selectedPrice: 0
+      selectedPrice: 0,
+      selectionEyebrow: selectionState.selectionEyebrow,
+      selectionTitle: selectionState.selectionTitle,
+      selectionDescription: selectionState.selectionDescription,
+      selectionPriceText: selectionState.selectionPriceText,
+      selectionPreviewItems: selectionState.previewItems || []
     })
   },
 
   handleCellTap(event) {
     const locator = event.detail.locator || {}
     const price = getPrice(pricingFull, locator)
+    const displayName = event.detail.displayName || ''
 
     if (!price) {
       wx.showToast({
@@ -224,12 +154,40 @@ Page({
       return
     }
 
-    this.setData({
-      selectedLocator: locator,
-      selectedKey: buildSelectionKey(locator),
-      selectedDisplay: event.detail.displayName || '',
-      selectedPrice: price
-    })
+    this.applySelection(locator, displayName, price)
+  },
+
+  handleEntryBuy(event) {
+    const locator = event.detail.locator || {}
+    const price = Number(event.detail.price || getPrice(pricingFull, locator))
+    const displayName = event.detail.displayName || ''
+
+    if (!price || !displayName) {
+      wx.showToast({
+        title: '该价格项不可用',
+        icon: 'none'
+      })
+      return
+    }
+
+    this.applySelection(locator, displayName, price)
+
+    const started = startDirectOrder(
+      getApp(),
+      {
+        locator,
+        price,
+        displayName
+      },
+      navigateTo
+    )
+
+    if (!started) {
+      wx.showToast({
+        title: '下单跳转失败',
+        icon: 'none'
+      })
+    }
   },
 
   async handleAddCart() {
@@ -268,15 +226,21 @@ Page({
       return
     }
 
-    const app = getApp()
-    app.globalData.currentSelection = buildDirectItem(
-      this.data.selectedLocator,
-      this.data.selectedPrice,
-      this.data.selectedDisplay
+    const started = startDirectOrder(
+      getApp(),
+      {
+        locator: this.data.selectedLocator,
+        price: this.data.selectedPrice,
+        displayName: this.data.selectedDisplay
+      },
+      navigateTo
     )
 
-    navigateTo('/pages/order-intent/index', {
-      mode: 'direct'
-    })
+    if (!started) {
+      wx.showToast({
+        title: '下单跳转失败',
+        icon: 'none'
+      })
+    }
   }
 })

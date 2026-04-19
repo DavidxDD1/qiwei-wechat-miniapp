@@ -1,49 +1,63 @@
 <view class="page-shell service-page">
-  <section-title
-    title="原表价格目录"
-    desc="护航单、男陪、女陪均按原始表结构保留，不做合并和删减"
-  ></section-title>
-
-  <scroll-view class="service-tabs" scroll-x="true" show-scrollbar="false">
-    <view class="service-tabs__inner">
-      <button
-        wx:for="{{services}}"
-        wx:key="id"
-        class="service-tabs__button {{activeServiceId === item.id ? 'service-tabs__button--active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="handleServiceChange"
-        hover-class="is-pressing"
-        hover-stay-time="150"
-      >
-        {{item.title}}
-      </button>
+  <view class="card service-hero">
+    <view class="service-hero__top">
+      <view class="service-hero__main">
+        <text class="service-hero__eyebrow">{{activeServiceEyebrow}}</text>
+        <text class="service-hero__title">{{activeServiceTitle}}</text>
+        <text class="service-hero__desc">{{activeServiceDescription}}</text>
+      </view>
+      <view class="service-hero__badge">
+        <text class="service-hero__badge-value">{{activeServiceBadge}}</text>
+        <text class="service-hero__badge-label">当前视图</text>
+      </view>
     </view>
-  </scroll-view>
 
-  <scroll-view class="service-tabs service-tabs--sub" scroll-x="true" show-scrollbar="false" wx:if="{{subTabs.length}}">
-    <view class="service-tabs__inner">
-      <button
-        wx:for="{{subTabs}}"
-        wx:key="id"
-        class="service-tabs__button service-tabs__button--sub {{activeTableId === item.id ? 'service-tabs__button--active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="handleSubChange"
-        hover-class="is-pressing"
-        hover-stay-time="150"
-      >
-        {{item.title}}
-      </button>
+    <view class="service-hero__stats">
+      <view class="service-hero__stat" wx:for="{{serviceStats}}" wx:key="label">
+        <text class="service-hero__stat-value">{{item.value}}</text>
+        <text class="service-hero__stat-label">{{item.label}}</text>
+      </view>
     </view>
-  </scroll-view>
-
-  <view class="card service-selection" wx:if="{{selectedDisplay}}">
-    <text class="service-selection__title">已选价格项</text>
-    <text class="service-selection__name">{{selectedDisplay}}</text>
-    <text class="service-selection__price">总价 ￥{{selectedPrice}}</text>
   </view>
 
+  <chip-tabs
+    items="{{serviceTabs}}"
+    active-id="{{activeServiceId}}"
+    bind:select="handleServiceSelect"
+  ></chip-tabs>
+
+  <chip-tabs
+    wx:if="{{subTabs.length}}"
+    items="{{subTabs}}"
+    active-id="{{activeTableId}}"
+    variant="secondary"
+    bind:select="handleSubSelect"
+  ></chip-tabs>
+
+  <view class="card service-selection {{selectedPrice ? 'service-selection--active' : ''}}">
+    <view class="service-selection__top">
+      <view class="service-selection__main">
+        <text class="service-selection__eyebrow">{{selectionEyebrow}}</text>
+        <text class="service-selection__name">{{selectionTitle}}</text>
+      </view>
+      <text class="service-selection__price {{selectedPrice ? '' : 'service-selection__price--muted'}}">{{selectionPriceText}}</text>
+    </view>
+    <text class="service-selection__desc">{{selectionDescription}}</text>
+    <view class="service-selection__preview" wx:if="{{selectionPreviewItems.length}}">
+      <text class="service-selection__preview-item" wx:for="{{selectionPreviewItems}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <entry-offer-list
+    wx:if="{{activeCard && activeCard.cardType === 'entry-group'}}"
+    card="{{activeCard}}"
+    selected-key="{{selectedKey}}"
+    bind:select="handleCellTap"
+    bind:buy="handleEntryBuy"
+  ></entry-offer-list>
+
   <raw-table-card
-    wx:if="{{activeCard}}"
+    wx:elif="{{activeCard}}"
     card="{{activeCard}}"
     selected-key="{{selectedKey}}"
     bind:celltap="handleCellTap"

@@ -1,6 +1,9 @@
 <view class="price-bar card">
   <view class="price-bar__meta">
-    <text class="price-bar__label">{{displayName || '当前未选择价格项'}}</text>
+    <view class="price-bar__label-row">
+      <text class="price-bar__status {{price ? 'price-bar__status--active' : ''}}">{{price ? '已锁定方案' : '等待选择'}}</text>
+      <text class="price-bar__label">{{displayName || '当前未选择价格项'}}</text>
+    </view>
     <text class="price-bar__value">￥{{price || 0}}</text>
   </view>
   <view class="price-bar__actions">

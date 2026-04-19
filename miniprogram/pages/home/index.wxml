@@ -1,23 +1,44 @@
 <view class="page-shell home-page">
-  <view class="card home-hero">
-    <image class="home-hero__logo" src="/assets/logo.jpg" mode="aspectFit"></image>
+  <page-hero
+    eyebrow="QIWEI ESPORTS"
+    title="{{hero.title}}"
+    desc="{{hero.subtitle}}"
+    logo-src="/assets/logo.jpg"
+    metrics="{{heroMetrics}}"
+    primary-text="进入服务目录"
+    secondary-text="查看个人中心"
+    bind:primarytap="handleOpenService"
+    bind:secondarytap="handleProfile"
+  ></page-hero>
+
+  <view class="home-section">
     <section-title
-      title="{{hero.title}}"
+      eyebrow="Service Matrix"
+      title="服务矩阵"
       desc="{{hero.slogan}}"
     ></section-title>
-    <text class="home-hero__subtitle">{{hero.subtitle}}</text>
-    <button
-      class="ghost-button home-hero__button home-hero__button--single"
-      bindtap="handleProfile"
-      hover-class="is-pressing"
-      hover-stay-time="150"
-    >
-      查看个人中心
-    </button>
+    <view class="home-entry-list">
+      <view
+        class="card home-entry-card"
+        wx:for="{{entryCards}}"
+        wx:key="id"
+        bindtap="handleOpenService"
+        hover-class="is-pressing"
+        hover-stay-time="120"
+      >
+        <view class="home-entry-card__top">
+          <text class="home-entry-card__index">0{{index + 1}}</text>
+          <text class="home-entry-card__action">查看目录</text>
+        </view>
+        <text class="home-entry-card__title">{{item.title}}</text>
+        <text class="home-entry-card__desc">{{item.desc}}</text>
+      </view>
+    </view>
   </view>
 
   <view class="home-section">
     <section-title
+      eyebrow="Hot Sale"
       title="今日热销"
       desc="从店内服务里随机推荐几项热门内容，点卡片可直接去服务页继续选择。"
     ></section-title>
@@ -31,27 +52,42 @@
         hover-stay-time="150"
       >
         <view class="home-hot-card__top">
+          <text class="home-hot-card__index">0{{index + 1}}</text>
           <text class="tag">{{item.tag}}</text>
-          <text class="home-hot-card__price">{{item.priceText}}</text>
         </view>
         <text class="home-hot-card__title">{{item.title}}</text>
         <text class="home-hot-card__desc">{{item.subtitle}}</text>
+        <view class="home-hot-card__bottom">
+          <text class="home-hot-card__price">{{item.priceText}}</text>
+          <text class="home-hot-card__action">立即锁定</text>
+        </view>
       </view>
     </view>
   </view>
 
-  <view class="home-section">
-    <section-title
-      title="当前能力"
-      desc="本地 Mock 全流程可跑，后续可升级到真实服务端"
-    ></section-title>
-    <view class="card home-summary">
+  <view class="home-insight-grid">
+    <view class="card home-panel">
+      <text class="home-panel__eyebrow">Flow</text>
+      <text class="home-panel__title">下单流程</text>
+      <view class="home-step" wx:for="{{journeySteps}}" wx:key="id">
+        <view class="home-step__index">{{index + 1}}</view>
+        <view class="home-step__main">
+          <text class="home-step__title">{{item.title}}</text>
+          <text class="home-step__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card home-panel">
+      <text class="home-panel__eyebrow">Capability</text>
+      <text class="home-panel__title">当前能力</text>
       <text class="home-summary__item" wx:for="{{serviceSummary}}" wx:key="*this">- {{item}}</text>
     </view>
   </view>
 
   <view class="home-section">
     <section-title
+      eyebrow="FAQ"
       title="常见问题"
       desc="支付、客服、原表来源等关键说明都放在这里"
     ></section-title>

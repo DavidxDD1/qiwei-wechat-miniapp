@@ -1,0 +1,46 @@
+<view class="card page-hero">
+  <view class="page-hero__ambient"></view>
+
+  <view class="page-hero__top">
+    <view class="page-hero__main">
+      <text class="page-hero__eyebrow" wx:if="{{eyebrow}}">{{eyebrow}}</text>
+      <text class="page-hero__title">{{title}}</text>
+      <text class="page-hero__desc" wx:if="{{desc}}">{{desc}}</text>
+    </view>
+
+    <image
+      class="page-hero__logo"
+      wx:if="{{logoSrc}}"
+      src="{{logoSrc}}"
+      mode="aspectFit"
+    ></image>
+  </view>
+
+  <view class="page-hero__metrics" wx:if="{{metrics.length}}">
+    <view class="page-hero__metric" wx:for="{{metrics}}" wx:key="label">
+      <text class="page-hero__metric-value">{{item.value}}</text>
+      <text class="page-hero__metric-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="page-hero__actions" wx:if="{{primaryText || secondaryText}}">
+    <button
+      wx:if="{{primaryText}}"
+      class="primary-button page-hero__button"
+      bindtap="handlePrimary"
+      hover-class="is-pressing"
+      hover-stay-time="120"
+    >
+      {{primaryText}}
+    </button>
+    <button
+      wx:if="{{secondaryText}}"
+      class="ghost-button page-hero__button"
+      bindtap="handleSecondary"
+      hover-class="is-pressing"
+      hover-stay-time="120"
+    >
+      {{secondaryText}}
+    </button>
+  </view>
+</view>

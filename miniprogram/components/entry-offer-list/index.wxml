@@ -1,0 +1,62 @@
+<view class="card entry-offer-list" wx:if="{{card}}">
+  <view class="entry-offer-list__header">
+    <view class="entry-offer-list__headline">
+      <text class="entry-offer-list__title">{{card.title}}</text>
+      <text class="entry-offer-list__subtitle" wx:if="{{card.subtitle}}">{{card.subtitle}}</text>
+    </view>
+    <view class="entry-offer-list__summary">
+      <text class="entry-offer-list__summary-value">{{card.entries.length}} 项</text>
+      <text class="entry-offer-list__summary-label">具体服务</text>
+    </view>
+  </view>
+
+  <view class="entry-offer-list__grid">
+    <view
+      class="entry-offer-card {{selectedKey === item.selectionKey ? 'entry-offer-card--selected' : ''}}"
+      wx:for="{{card.entries}}"
+      wx:key="entryId"
+      data-entry-id="{{item.entryId}}"
+      bindtap="handleSelect"
+      hover-class="is-pressing"
+      hover-stay-time="120"
+    >
+      <view class="entry-offer-card__top">
+        <view class="entry-offer-card__main">
+          <text class="entry-offer-card__title">{{item.title}}</text>
+          <text class="entry-offer-card__summary">{{item.summary}}</text>
+        </view>
+        <view class="entry-offer-card__price-block">
+          <text class="entry-offer-card__price">{{item.displayPrice}}</text>
+          <text class="entry-offer-card__price-label">当前定价</text>
+        </view>
+      </view>
+
+      <view class="entry-offer-card__tags" wx:if="{{item.metaTags.length}}">
+        <text
+          class="entry-offer-card__tag"
+          wx:for="{{item.metaTags}}"
+          wx:key="*this"
+          wx:for-item="tag"
+        >
+          {{tag}}
+        </text>
+      </view>
+
+      <view class="entry-offer-card__footer">
+        <view class="entry-offer-card__meta">
+          <text class="entry-offer-card__guarantee" wx:if="{{item.guaranteeText}}">{{item.guaranteeText}}</text>
+          <text class="entry-offer-card__hint">{{selectedKey === item.selectionKey ? '已锁定方案，可直接下单' : item.hintText}}</text>
+        </view>
+        <button
+          class="primary-button entry-offer-card__button"
+          data-entry-id="{{item.entryId}}"
+          catchtap="handleBuy"
+          hover-class="is-pressing"
+          hover-stay-time="120"
+        >
+          {{item.actionText}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

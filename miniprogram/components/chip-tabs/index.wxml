@@ -1,0 +1,16 @@
+<scroll-view class="chip-tabs chip-tabs--{{variant}}" scroll-x="true" show-scrollbar="false">
+  <view class="chip-tabs__inner">
+    <button
+      wx:for="{{items}}"
+      wx:key="id"
+      class="chip-tabs__item {{activeId === item.id ? 'chip-tabs__item--active' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="handleTap"
+      hover-class="is-pressing"
+      hover-stay-time="120"
+    >
+      <text class="chip-tabs__label">{{item.title || item.label || item.text}}</text>
+      <text class="chip-tabs__caption" wx:if="{{item.caption}}">{{item.caption}}</text>
+    </button>
+  </view>
+</scroll-view>

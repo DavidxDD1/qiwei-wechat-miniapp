@@ -1,4 +1,8 @@
 <view class="section-title">
+  <view class="section-title__top" wx:if="{{eyebrow}}">
+    <text class="section-title__eyebrow">{{eyebrow}}</text>
+    <view class="section-title__line"></view>
+  </view>
   <text class="section-title__headline">{{title}}</text>
   <text class="section-title__desc" wx:if="{{desc}}">{{desc}}</text>
 </view>
