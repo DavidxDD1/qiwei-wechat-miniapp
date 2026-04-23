@@ -1,4 +1,4 @@
-<view class="page-shell orders-page">
+<view class="page-shell page-stack orders-page">
   <section-title
     title="订单列表"
     desc="本地 Mock 创建的订单都会保存在这里，可按状态筛选查看。"
@@ -29,7 +29,7 @@
   ></empty-state>
 
   <view wx:else class="orders-list">
-    <view class="card orders-card" wx:for="{{orders}}" wx:key="orderNo">
+    <view class="card panel-card orders-card" wx:for="{{orders}}" wx:key="orderNo">
       <view class="orders-card__top">
         <view class="orders-card__main">
           <text class="orders-card__order-no">订单号 {{item.orderNo}}</text>

@@ -1,4 +1,4 @@
-<view class="card entry-offer-list" wx:if="{{card}}">
+<view class="card panel-card entry-offer-list" wx:if="{{card}}">
   <view class="entry-offer-list__header">
     <view class="entry-offer-list__headline">
       <text class="entry-offer-list__title">{{card.title}}</text>

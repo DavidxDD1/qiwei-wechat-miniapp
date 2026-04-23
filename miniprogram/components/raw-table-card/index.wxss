@@ -1,7 +1,5 @@
 .raw-table-card {
   padding: 18px;
-  display: flex;
-  flex-direction: column;
   gap: 16px;
 }
 
@@ -22,13 +20,13 @@
 
 .raw-table-card__title {
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: var(--font-size-title);
   font-weight: 700;
 }
 
 .raw-table-card__subtitle {
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: var(--font-size-meta);
   line-height: 1.6;
 }
 

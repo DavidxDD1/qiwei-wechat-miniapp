@@ -1,4 +1,4 @@
-<view class="card page-hero">
+<view class="card panel-card page-hero">
   <view class="page-hero__ambient"></view>
 
   <view class="page-hero__top">
