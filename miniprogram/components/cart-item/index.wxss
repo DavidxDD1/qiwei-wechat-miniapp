@@ -1,7 +1,4 @@
 .cart-item {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
   gap: 14px;
 }
 
@@ -20,16 +17,16 @@
 }
 
 .cart-item__title {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-heading);
   line-height: 1.6;
 }
 
 .cart-item__price {
-  color: #00F5A0;
+  color: var(--brand-primary);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .cart-item__meta {
@@ -39,8 +36,8 @@
 }
 
 .cart-item__line {
-  color: #A0A6B1;
-  font-size: 12px;
+  color: var(--text-secondary);
+  font-size: var(--font-size-caption);
 }
 
 .cart-item__remark {
@@ -57,5 +54,5 @@
 }
 
 .cart-item__button--danger {
-  color: #FF4D4F;
+  color: var(--danger);
 }

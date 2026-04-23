@@ -1,4 +1,4 @@
-<view class="card raw-table-card" wx:if="{{card}}">
+<view class="card panel-card raw-table-card" wx:if="{{card}}">
   <view class="raw-table-card__header">
     <view class="raw-table-card__headline">
       <text class="raw-table-card__title">{{card.title}}</text>

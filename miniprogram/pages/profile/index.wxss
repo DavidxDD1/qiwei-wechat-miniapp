@@ -1,12 +1,6 @@
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .profile-user {
-  padding: 20px 16px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 14px;
 }
@@ -15,14 +9,14 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #00F5A0, #00C2FF);
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .profile-user__avatar-text {
-  color: #0F1115;
+  color: var(--bg-primary);
   font-size: 18px;
   font-weight: 700;
 }
@@ -34,23 +28,15 @@
 }
 
 .profile-user__name {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: var(--font-weight-heading);
 }
 
-.profile-actions,
 .profile-placeholder-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.profile-placeholder-card {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .profile-placeholder-card__top {
@@ -60,12 +46,13 @@
 }
 
 .profile-placeholder-card__title {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-heading);
 }
 
 .profile-placeholder-card__desc {
-  color: #A0A6B1;
-  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
 }
