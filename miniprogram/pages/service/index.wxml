@@ -1,5 +1,5 @@
-<view class="page-shell service-page">
-  <view class="card service-hero">
+<view class="page-shell page-stack service-page">
+  <view class="card panel-card service-hero">
     <view class="service-hero__top">
       <view class="service-hero__main">
         <text class="service-hero__eyebrow">{{activeServiceEyebrow}}</text>
@@ -34,7 +34,30 @@
     bind:select="handleSubSelect"
   ></chip-tabs>
 
-  <view class="card service-selection {{selectedPrice ? 'service-selection--active' : ''}}">
+  <view class="card panel-card service-advisor" wx:if="{{serviceAdvisor.steps.length}}">
+    <view class="service-advisor__top">
+      <view class="service-advisor__main">
+        <text class="service-advisor__eyebrow">Selection Guide</text>
+        <text class="service-advisor__title">{{serviceAdvisor.title}}</text>
+        <text class="service-advisor__desc">{{serviceAdvisor.desc}}</text>
+      </view>
+      <view class="service-advisor__status">
+        <text class="service-advisor__status-value">{{serviceAdvisor.statusText}}</text>
+        <text class="service-advisor__status-label">{{serviceAdvisor.activeTitle || '当前目录'}}</text>
+      </view>
+    </view>
+    <view class="service-advisor__tags">
+      <view class="service-advisor__tag" wx:for="{{serviceAdvisor.tags}}" wx:key="label">
+        <text class="service-advisor__tag-label">{{item.label}}</text>
+        <text class="service-advisor__tag-value">{{item.value}}</text>
+      </view>
+    </view>
+    <view class="service-advisor__steps">
+      <text class="service-advisor__step" wx:for="{{serviceAdvisor.steps}}" wx:key="*this">{{index + 1}}. {{item}}</text>
+    </view>
+  </view>
+
+  <view class="card panel-card service-selection {{selectedPrice ? 'service-selection--active' : ''}}">
     <view class="service-selection__top">
       <view class="service-selection__main">
         <text class="service-selection__eyebrow">{{selectionEyebrow}}</text>

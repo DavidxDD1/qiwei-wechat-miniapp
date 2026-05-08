@@ -39,3 +39,13 @@ test('home and service pages share pending service intent for tab navigation', (
   assert.match(serviceScript, /consumePendingServiceIntent/)
   assert.match(serviceScript, /onShow\(\)/)
 })
+
+test('service page renders an advisor panel before the price table', () => {
+  const source = readFile('miniprogram/pages/service/index.wxml')
+
+  assert.match(source, /class="[^"]*page-stack[^"]*service-page[^"]*"/)
+  assert.match(source, /class="[^"]*panel-card[^"]*service-advisor[^"]*"/)
+  assert.match(source, /\{\{serviceAdvisor\.title\}\}/)
+  assert.match(source, /wx:for="\{\{serviceAdvisor\.tags\}\}"/)
+  assert.match(source, /wx:for="\{\{serviceAdvisor\.steps\}\}"/)
+})

@@ -7,6 +7,7 @@ const { consumePendingServiceIntent } = require('../../utils/serviceIntent')
 const { buildSelectionState } = require('./selectionState')
 const { startDirectOrder } = require('./directOrder')
 const {
+  buildServiceAdvisor,
   buildSelectionKey,
   buildServiceTabs,
   buildServiceView,
@@ -26,6 +27,14 @@ Page({
     activeServiceDescription: '',
     activeServiceBadge: '',
     serviceStats: [],
+    serviceAdvisor: {
+      title: '',
+      desc: '',
+      statusText: '',
+      activeTitle: '',
+      tags: [],
+      steps: []
+    },
     selectedLocator: null,
     selectedKey: '',
     selectedDisplay: '',
@@ -79,7 +88,12 @@ Page({
   applySelection(locator, displayName, price) {
     const service = (this.data.services || []).find((item) => item.id === this.data.activeServiceId) || null
     const view = buildServiceView(service)
-    const heroData = service ? buildHeroData(service, view, true) : {}
+    const currentView = {
+      ...view,
+      activeCard: this.data.activeCard
+    }
+    const heroData = service ? buildHeroData(service, currentView, true) : {}
+    const serviceAdvisor = service ? buildServiceAdvisor(service, currentView, true) : {}
     const selectionState = buildSelectionState(this.data.activeCard, displayName, price)
 
     this.setData({
@@ -88,6 +102,7 @@ Page({
       selectedDisplay: displayName,
       selectedPrice: price,
       serviceStats: heroData.serviceStats || [],
+      serviceAdvisor,
       selectionEyebrow: selectionState.selectionEyebrow,
       selectionTitle: selectionState.selectionTitle,
       selectionDescription: selectionState.selectionDescription,
@@ -100,6 +115,7 @@ Page({
     const service = (services || []).find((item) => item.id === serviceId) || null
     const view = buildServiceView(service)
     const heroData = service ? buildHeroData(service, view, false) : {}
+    const serviceAdvisor = service ? buildServiceAdvisor(service, view, false) : {}
     const selectionState = buildSelectionState(view.activeCard, '', 0)
 
     this.setData({
@@ -114,6 +130,7 @@ Page({
       activeServiceDescription: heroData.activeServiceDescription || '',
       activeServiceBadge: heroData.activeServiceBadge || '',
       serviceStats: heroData.serviceStats || [],
+      serviceAdvisor,
       selectedLocator: null,
       selectedKey: '',
       selectedDisplay: '',
@@ -141,7 +158,12 @@ Page({
     const service = (this.data.services || []).find((item) => item.id === this.data.activeServiceId) || null
     const view = buildServiceView(service)
     const nextCard = view.cardsMap[subId] || null
+    const nextView = {
+      ...view,
+      activeCard: nextCard
+    }
     const heroData = service ? buildHeroData(service, view, false) : {}
+    const serviceAdvisor = service ? buildServiceAdvisor(service, nextView, false) : {}
     const selectionState = buildSelectionState(nextCard, '', 0)
 
     this.setData({
@@ -149,6 +171,7 @@ Page({
       activeTableId: subId,
       activeCard: nextCard,
       serviceStats: heroData.serviceStats || [],
+      serviceAdvisor,
       selectedLocator: null,
       selectedKey: '',
       selectedDisplay: '',
