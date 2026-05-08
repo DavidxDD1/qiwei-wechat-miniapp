@@ -21,6 +21,52 @@ module.exports = {
       desc: '娱乐、娱乐技术、顶尖、战神、魔王、甜蜜陪'
     }
   ],
+  serviceEntrypoints: [
+    {
+      id: 'fast_escort',
+      serviceId: 'escort',
+      badge: '最快下单',
+      intent: '想直接找人带局',
+      title: '护航单',
+      desc: '体验单、正常单、单局保底单集中展示，适合已经明确要快速下单的用户。',
+      actionText: '进入护航目录'
+    },
+    {
+      id: 'rank_compare',
+      serviceId: 'male',
+      badge: '价格对比',
+      intent: '想按档位和时长比价',
+      title: '男陪价格表',
+      desc: '保留原表矩阵结构，方便横向比较档位、时长、保底要求和预算区间。',
+      actionText: '查看男陪矩阵'
+    },
+    {
+      id: 'style_match',
+      serviceId: 'female',
+      badge: '风格筛选',
+      intent: '想按陪玩类型挑选',
+      title: '女陪价格表',
+      desc: '按娱乐、技术、顶尖、战神等路线浏览，适合先看风格再确定方案。',
+      actionText: '查看女陪矩阵'
+    }
+  ],
+  trustSignals: [
+    {
+      id: 'source',
+      title: '原表价格',
+      desc: '服务价格来自本地原始价目数据，不做模糊合并。'
+    },
+    {
+      id: 'confirm',
+      title: '人工确认',
+      desc: '提交后进入客服确认流程，降低错选和信息遗漏。'
+    },
+    {
+      id: 'local',
+      title: '本地闭环',
+      desc: '购物车、意向订单和支付说明链路当前均可本地跑通。'
+    }
+  ],
   journeySteps: [
     {
       id: 'browse',

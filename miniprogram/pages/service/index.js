@@ -3,6 +3,7 @@ const { getCatalog } = require('../../services/catalog')
 const { addToCart } = require('../../services/cart')
 const { getPrice } = require('../../utils/getPrice')
 const { navigateTo } = require('../../utils/router')
+const { consumePendingServiceIntent } = require('../../utils/serviceIntent')
 const { buildSelectionState } = require('./selectionState')
 const { startDirectOrder } = require('./directOrder')
 const {
@@ -37,8 +38,27 @@ Page({
   },
 
   async onLoad(options) {
-    this.defaultServiceId = options && options.serviceId ? options.serviceId : 'escort'
+    const pendingServiceId = consumePendingServiceIntent(getApp())
+    this.defaultServiceId = pendingServiceId
+      || (options && options.serviceId ? options.serviceId : 'escort')
     await this.loadCatalog()
+  },
+
+  onShow() {
+    const pendingServiceId = consumePendingServiceIntent(getApp())
+
+    if (!pendingServiceId) {
+      return
+    }
+
+    if (!this.data.services.length) {
+      this.defaultServiceId = pendingServiceId
+      return
+    }
+
+    if (pendingServiceId !== this.data.activeServiceId) {
+      this.setActiveService(this.data.services, pendingServiceId)
+    }
   },
 
   async loadCatalog() {

@@ -1,6 +1,4 @@
 .home-page {
-  display: flex;
-  flex-direction: column;
   gap: 22px;
 }
 
@@ -10,24 +8,14 @@
   gap: 14px;
 }
 
-.home-entry-list,
+.home-service-list,
 .home-hot-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.home-entry-card,
-.home-hot-card,
-.home-panel,
-.home-faq {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.home-entry-card__top,
+.home-service-card__top,
 .home-hot-card__top {
   display: flex;
   align-items: center;
@@ -35,27 +23,34 @@
   gap: 12px;
 }
 
-.home-entry-card__index,
 .home-hot-card__index {
   color: var(--brand-highlight);
-  font-size: 12px;
+  font-size: var(--font-size-caption);
   font-weight: 700;
   letter-spacing: 1.4px;
 }
 
-.home-entry-card__action,
+.home-service-card__action,
 .home-hot-card__action {
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: var(--font-size-caption);
 }
 
-.home-entry-card__title,
+.home-service-card__title,
 .home-hot-card__title,
 .home-faq__q {
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: var(--font-size-title);
   font-weight: 700;
   line-height: 1.4;
+}
+
+.home-service-card__intent {
+  color: var(--brand-highlight);
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
 }
 
 .home-hot-card__price {
@@ -64,14 +59,44 @@
   font-weight: 700;
 }
 
-.home-entry-card__desc,
+.home-service-card__desc,
 .home-hot-card__desc,
 .home-summary__item,
 .home-faq__a,
 .home-panel__eyebrow,
 .home-step__desc {
   color: var(--text-secondary);
-  line-height: 1.7;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.home-trust-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-trust-item {
+  min-width: 0;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(130, 154, 184, 0.14);
+  background: rgba(8, 16, 30, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-trust-item__title {
+  color: var(--text-primary);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+}
+
+.home-trust-item__desc {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-label);
+  line-height: 1.5;
 }
 
 .home-hot-card__bottom {
@@ -88,7 +113,7 @@
 }
 
 .home-panel__eyebrow {
-  font-size: 11px;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
@@ -97,7 +122,7 @@
 .home-panel__title,
 .home-step__title {
   color: var(--text-primary);
-  font-size: 17px;
+  font-size: var(--font-size-heading);
   font-weight: 700;
 }
 

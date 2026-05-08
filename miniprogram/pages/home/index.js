@@ -2,6 +2,7 @@ const homeContent = require('../../data/homeContent')
 const { pricingFull } = require('../../data/pricingFull')
 const { flattenOffers, pickFeaturedOffers } = require('../../utils/featured')
 const { switchTab } = require('../../utils/router')
+const { setPendingServiceIntent } = require('../../utils/serviceIntent')
 
 function buildHeroMetrics(catalog) {
   const services = catalog.services || []
@@ -27,9 +28,11 @@ Page({
   data: {
     hero: homeContent.hero,
     entryCards: homeContent.entryCards,
+    serviceEntrypoints: homeContent.serviceEntrypoints,
     faq: homeContent.faq,
     journeySteps: homeContent.journeySteps,
     serviceSummary: homeContent.serviceSummary,
+    trustSignals: homeContent.trustSignals,
     heroMetrics: buildHeroMetrics(pricingFull),
     hotSales: []
   },
@@ -53,6 +56,12 @@ Page({
   },
 
   handleOpenService() {
+    switchTab('/pages/service/index')
+  },
+
+  handleServiceEntry(event) {
+    const serviceId = event.currentTarget.dataset.serviceId
+    setPendingServiceIntent(getApp(), serviceId)
     switchTab('/pages/service/index')
   }
 })
