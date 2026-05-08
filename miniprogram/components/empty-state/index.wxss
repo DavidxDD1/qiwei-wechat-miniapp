@@ -1,7 +1,5 @@
 .empty-state {
   padding: 28px 20px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 14px;
   text-align: center;
@@ -9,21 +7,21 @@
 
 .empty-state__eyebrow {
   color: var(--brand-highlight);
-  font-size: 11px;
+  font-size: var(--font-size-label);
   font-weight: 700;
   letter-spacing: 2px;
 }
 
 .empty-state__title {
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: var(--font-size-title);
   font-weight: 700;
 }
 
 .empty-state__desc {
   color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
 }
 
 .empty-state__button {

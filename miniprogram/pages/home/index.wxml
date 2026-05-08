@@ -1,4 +1,4 @@
-<view class="page-shell home-page">
+<view class="page-shell page-stack home-page">
   <page-hero
     eyebrow="QIWEI ESPORTS"
     title="{{hero.title}}"
@@ -13,26 +13,35 @@
 
   <view class="home-section">
     <section-title
-      eyebrow="Service Matrix"
-      title="服务矩阵"
+      eyebrow="Choose Faster"
+      title="按需求进入服务"
       desc="{{hero.slogan}}"
     ></section-title>
-    <view class="home-entry-list">
+    <view class="home-service-list">
       <view
-        class="card home-entry-card"
-        wx:for="{{entryCards}}"
+        class="card panel-card home-service-card"
+        wx:for="{{serviceEntrypoints}}"
         wx:key="id"
-        bindtap="handleOpenService"
+        data-service-id="{{item.serviceId}}"
+        bindtap="handleServiceEntry"
         hover-class="is-pressing"
         hover-stay-time="120"
       >
-        <view class="home-entry-card__top">
-          <text class="home-entry-card__index">0{{index + 1}}</text>
-          <text class="home-entry-card__action">查看目录</text>
+        <view class="home-service-card__top">
+          <text class="tag">{{item.badge}}</text>
+          <text class="home-service-card__action">{{item.actionText}}</text>
         </view>
-        <text class="home-entry-card__title">{{item.title}}</text>
-        <text class="home-entry-card__desc">{{item.desc}}</text>
+        <text class="home-service-card__intent">{{item.intent}}</text>
+        <text class="home-service-card__title">{{item.title}}</text>
+        <text class="home-service-card__desc">{{item.desc}}</text>
       </view>
+    </view>
+  </view>
+
+  <view class="home-trust-list">
+    <view class="home-trust-item" wx:for="{{trustSignals}}" wx:key="id">
+      <text class="home-trust-item__title">{{item.title}}</text>
+      <text class="home-trust-item__desc">{{item.desc}}</text>
     </view>
   </view>
 
@@ -44,7 +53,7 @@
     ></section-title>
     <view class="home-hot-list">
       <view
-        class="card home-hot-card"
+        class="card panel-card home-hot-card"
         wx:for="{{hotSales}}"
         wx:key="id"
         bindtap="handleOpenService"
@@ -66,7 +75,7 @@
   </view>
 
   <view class="home-insight-grid">
-    <view class="card home-panel">
+    <view class="card panel-card home-panel">
       <text class="home-panel__eyebrow">Flow</text>
       <text class="home-panel__title">下单流程</text>
       <view class="home-step" wx:for="{{journeySteps}}" wx:key="id">
@@ -78,7 +87,7 @@
       </view>
     </view>
 
-    <view class="card home-panel">
+    <view class="card panel-card home-panel">
       <text class="home-panel__eyebrow">Capability</text>
       <text class="home-panel__title">当前能力</text>
       <text class="home-summary__item" wx:for="{{serviceSummary}}" wx:key="*this">- {{item}}</text>
@@ -91,7 +100,7 @@
       title="常见问题"
       desc="支付、客服、原表来源等关键说明都放在这里"
     ></section-title>
-    <view class="card home-faq" wx:for="{{faq}}" wx:key="q">
+    <view class="card panel-card home-faq" wx:for="{{faq}}" wx:key="q">
       <text class="home-faq__q">{{item.q}}</text>
       <text class="home-faq__a">{{item.a}}</text>
     </view>

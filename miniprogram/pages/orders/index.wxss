@@ -1,9 +1,3 @@
-.orders-page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .orders-filters {
   width: 100%;
   white-space: nowrap;
@@ -21,16 +15,19 @@
   height: 40px;
   line-height: 40px;
   border-radius: 999px;
-  border: 1px solid #2A2F3A;
-  background: #171A21;
-  color: #A0A6B1;
+  border: 1px solid var(--border-color);
+  background: rgba(17, 24, 38, 0.88);
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
 .orders-filters__button--active {
-  border: 2px solid #00F5A0;
-  color: #FFFFFF;
-  box-shadow: 0 0 20px rgba(0, 245, 160, 0.4);
+  border-color: rgba(82, 242, 184, 0.28);
+  background:
+    linear-gradient(180deg, rgba(82, 242, 184, 0.14), rgba(17, 24, 38, 0.92)),
+    rgba(17, 24, 38, 0.92);
+  color: var(--text-primary);
+  box-shadow: 0 10px 22px rgba(82, 242, 184, 0.16);
   transform: scale(1.02);
 }
 
@@ -38,13 +35,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.orders-card {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .orders-card__top {
@@ -62,23 +52,24 @@
 }
 
 .orders-card__order-no {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
+  color: var(--text-primary);
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-heading);
 }
 
 .orders-card__time,
 .orders-card__contact,
 .orders-card__item,
 .orders-card__remark {
-  color: #A0A6B1;
-  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
 }
 
 .orders-card__amount {
-  color: #00F5A0;
+  color: var(--brand-primary);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .orders-card__items {

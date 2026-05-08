@@ -25,6 +25,19 @@ page {
   --space-2: 16px;
   --space-3: 24px;
   --space-4: 32px;
+  --space-section: 18px;
+  --space-card: 18px;
+  --font-size-label: 11px;
+  --font-size-meta: 13px;
+  --font-size-heading: 16px;
+  --font-size-title: 18px;
+  --font-size-display: 24px;
+  --font-size-hero: 28px;
+  --font-size-body: 14px;
+  --font-size-caption: 12px;
+  --font-weight-heading: 600;
+  --line-height-body: 1.7;
+  --line-height-relaxed: 1.75;
   --page-bottom-offset: 188px;
   background:
     radial-gradient(circle at top right, rgba(82, 242, 184, 0.12), transparent 32%),
@@ -61,6 +74,12 @@ button::after {
   animation: pageFadeIn 320ms ease both;
 }
 
+.page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section);
+}
+
 .card {
   position: relative;
   overflow: hidden;
@@ -78,6 +97,24 @@ button::after {
   inset: 0;
   background: linear-gradient(120deg, rgba(77, 189, 255, 0.08), transparent 32%, rgba(82, 242, 184, 0.06) 100%);
   pointer-events: none;
+}
+
+.panel-card {
+  padding: var(--space-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-stack > .primary-button,
+.action-stack > .ghost-button {
+  width: 100%;
 }
 
 .muted {
